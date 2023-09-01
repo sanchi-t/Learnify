@@ -1,0 +1,9 @@
+.menu-spacer {
+  flex: 1 1 auto;
+}
+
+.nav-item.active .nav-link {
+  /* Apply your desired styles here */
+  background-color: #007bff; /* Example background color for active link */
+  color: #fff; /* Example text color for active link */
+}

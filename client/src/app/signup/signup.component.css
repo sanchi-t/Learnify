@@ -1,0 +1,203 @@
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+}
+  
+.input-container input {
+    background: transparent;
+    width: 25rem;
+    padding: 1.5em;
+    margin-bottom: 0;
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5000px;
+    background: #f6f6f6;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    padding-left: 3.5rem;
+}
+  
+.input-container i {
+    position: absolute;
+    left: 1.5rem;
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.matform {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 3em;
+    height: 320px;
+    border-radius: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+    align-items: center;
+    height: auto;
+
+}
+
+form input {
+    background: transparent;
+    width: 20rem;
+    padding: 1.5em;
+    margin-bottom: 2em;
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5000px;
+    /* backdrop-filter: blur(5px); */
+    /* box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2); */
+    background: #f6f6f6;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+form input:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
+}
+form input[type="email"]:focus, form input[type="password"]:focus {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
+}
+form input[type="button"] {
+    margin-top: 10px;
+    width: 150px;
+    font-size: 1rem;
+}
+form input[type="button"]:hover {
+    cursor: pointer;
+}
+form input[type="button"]:active {
+    background: rgba(255, 255, 255, 0.2);
+}
+form:hover {
+    margin: 4px;
+}
+
+.authentication-card{
+    box-shadow: none;
+}
+
+.headerTitle{
+    font-family: 'Montserrat', sans-serif;
+    padding: 1rem 5rem;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+    color: #000000;
+    
+}
+.signupB {
+    align-items: center;
+    appearance: none;
+    background-color: #4495fa;
+    background-image: linear-gradient(1deg, #4F58FD, #149BF3 99%);
+    background-size: calc(100% + 20px) calc(100% + 20px);
+    border-radius: 100px;
+    border-width: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: CircularStd,sans-serif;
+    font-size: 1.5rem;
+    height: auto;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 6px 20px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s,background-position .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    white-space: nowrap;
+    width: 32%;
+    height: 8vh;
+    align-self: center;
+    margin-top: 2rem;
+}
+  
+.signupB:active,
+.signupB:focus {
+outline: none;
+}
+  
+.signupB:hover {
+background-position: -20px -20px;
+}
+  
+.signupB:focus:not(:active) {
+box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
+}
+
+.mat-mdc-button[disabled][disabled]{
+    color:#FFFFFF;
+}
+#firstcontainer{
+    margin-top: 0;
+}
+
+.right-column{
+    background-color: #f6f6f6;
+    height: auto;
+    min-height: 92.5vh;
+}
+
+.headerTitle2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4rem;
+    /* font-weight: 500; */
+    color: #000000; 
+    text-align: right;
+    padding-right: 2rem;
+    line-height: 0.7;
+    padding-top: 4rem;
+}
+
+
+img{
+    height:25rem;
+    width: auto;
+    align-self: center;
+    margin-bottom: 0;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    float: left;
+    margin-top: 1rem;
+    
+}
+  
+.remember-forgot label {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+.remember-forgot label input[type="checkbox"] {
+    width: 1rem;
+    
+    padding: 0;
+}
+
+#eye {
+    margin-left: 18rem; /* Push the icon to the right */
+    cursor: pointer;
+}
+

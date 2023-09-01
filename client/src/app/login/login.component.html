@@ -1,0 +1,38 @@
+<div class="authentication-card-container" fxLayout="column" fxLayoutAlign="center">
+  <mat-card class="authentication-card">
+    <mat-card-header class="headerCard">
+      <mat-card-title class="headerTitle">Welcome Back</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="container">
+      <form [formGroup]="loginForm" fxLayout="column" class="matform">
+        <div class="icon-input">
+          <input formControlName="username" placeholder="Username" />
+          <i class="material-icons">perm_identity</i>
+        </div>
+        <div class="icon-input">
+          <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" placeholder="Password" />
+          <i class="material-icons">lock</i>
+          <i class="material-icons"
+          id="eye"
+          (click)="togglePasswordVisibility()"
+          [class.active]="!hidePassword">{{ hidePassword ? 'visibility' : 'visibility_off' }}</i>
+        </div>
+        <div class="remember-forgot">
+          <label>
+            <input type="checkbox" formControlName="check" /> Remember Me
+          </label>
+          <a href="#">Forget Password?</a>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="flexRow">
+      <button class="loginB" (click)="onSubmit()">Login</button>
+      <br>
+    </mat-card-actions>
+    <div class="signup-link">Don't have an account? <a [routerLink]="['/register']">Sign up</a></div>
+  </mat-card>
+</div>
+
+
+<img class="bottom-left-image" src="..\..\assets\Login_Image.png" alt="Login Image" />
+  

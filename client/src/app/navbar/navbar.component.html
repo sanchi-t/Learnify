@@ -1,0 +1,63 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><span class="material-icons">school</span><a class="navbar-brand" href="#">LEARNIFY</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      
+      <!-- <li class="nav-item active">
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/home']" >Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li (click)="select('login')" [ngClass]="{active: isActive('login')}" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/login']" >Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
+      </li> -->
+
+      <li *ngFor="let n of list" (click)="select(n)" [ngClass]="{active: isActive(n)}" mdbWavesEffect [routerLink]="['/'+n.toLowerCase()]" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect>{{n}}</a>
+      </li>
+      
+      <li *ngIf="isLoggedIn" (click)="logout()" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect>Logout</a>
+      </li>
+      
+      <!-- Show "Login" link when not logged in -->
+      <li *ngIf="!isLoggedIn" (click)="select('Login')" [ngClass]="{ active: isActive('Login') }" mdbWavesEffect [routerLink]="['/login']" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect>Login</a>
+      </li>
+      
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          Basic dropdown<span class="caret"></span>
+        </a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Action</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
+          <div class="divider dropdown-divider"></div>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
+        </div>
+      </li>
+    </ul>
+    <!-- Links -->
+
+    <!-- Search form -->
+    <form class="form-inline waves-light" mdbWavesEffect>
+      <div class="md-form my-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      </div>
+    </form>
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->

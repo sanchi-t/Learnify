@@ -12,6 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component';
+import { CoursesComponent } from './courses/courses.component';
+import { RecommendComponent } from './recommend/recommend.component';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { SignupComponent } from './signup/signup.component';
     HomeComponent,
     LoginComponent,
     SignupComponent,
+    CoursesComponent,
+    RecommendComponent,
   ],
   imports: [
     BrowserModule,

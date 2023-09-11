@@ -27,6 +27,10 @@
       <li *ngIf="isLoggedIn" (click)="logout()" class="nav-item">
         <a class="nav-link waves-light" mdbWavesEffect>Logout</a>
       </li>
+
+      <li *ngIf="isLoggedIn" [routerLink]="['/courses']" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect>Courses</a>
+      </li>
       
       <!-- Show "Login" link when not logged in -->
       <li *ngIf="!isLoggedIn" (click)="select('Login')" [ngClass]="{ active: isActive('Login') }" mdbWavesEffect [routerLink]="['/login']" class="nav-item">

@@ -1,0 +1,67 @@
+/* recommended-courses.component.css */
+
+/* Style for the header strip */
+.header-strip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3498db; /* Background color for the header strip */
+    padding: 20px;
+    color: #fff; /* Text color for the header */
+  }
+  
+  .header-image {
+    max-width: 200px; /* Adjust the image size as needed */
+    height: auto;
+    margin-right: 20px;
+  }
+  
+  .header-title {
+    font-size: 24px; /* Adjust the font size as needed */
+  }
+  
+  /* Style for the course cards */
+  .course-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+  }
+  
+  .course-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    max-width: 300px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .course-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  .course-description {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .learn-more-button {
+    background-color: #3498db; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .learn-more-button:hover {
+    background-color: #2980b9; /* Hover state background color */
+  }
+  

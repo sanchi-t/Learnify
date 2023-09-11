@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable ,tap} from 'rxjs';
-
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { CanActivate, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+
+export class AuthService implements CanActivate {
   private readonly tokenKey = 'token';
   private apiUrl = 'http://localhost:3000';
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
-  constructor(private http: HttpClient) {   }
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(username: string, password: string) {
     return this.http.post<any>(`${this.apiUrl}/login`, { username, password }).pipe(
@@ -21,9 +22,21 @@ export class AuthService {
       })
     );
   }
-  register(username: string, name:string, password: string) {
-    return this.http.post<any>(`${this.apiUrl}/register`,{ username, name, password});
+
+  register(username: string, name: string, password: string) {
+    return this.http.post<any>(`${this.apiUrl}/register`, { username, name, password });
   }
+
+  canActivate(): boolean {
+    if (this.isLoggedIn()) {
+      return true;
+    } else {
+      // Redirect to the login page or any other route
+      this.router.navigate(['/login']); // Replace 'login' with your login route
+      return false;
+    }
+  }
+
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
@@ -38,5 +51,4 @@ export class AuthService {
     sessionStorage.removeItem(this.tokenKey);
     this.isLoggedInSubject.next(false);
   }
-
 }

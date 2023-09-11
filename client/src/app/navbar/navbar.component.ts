@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_service/auth.service'; 
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit  {
   selected: string = 'Home';
   list:any;
   isLoggedIn: boolean = false;
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.list = [
        'Home',
        'Procing',
@@ -36,5 +36,6 @@ export class NavbarComponent implements OnInit  {
   logout() {
     this.authService.logout(); // Call your AuthService logout method
     this.isLoggedIn = false; // Update the isLoggedIn variable
+    this.router.navigate(['/home']);
   }
 }

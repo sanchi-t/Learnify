@@ -1,0 +1,10 @@
+<div class="courses-container">
+    <h1 class="page-heading">BROWSE ONLINE COURSES</h1>
+    <div class="courses-grid">
+      <div *ngFor="let course of courses" class="course-thumbnail" (click)="viewCourse(course)">
+        <img [src]="course.imageUrl" alt="{{ course.name }} Thumbnail" />
+        <h2>{{ course.name }}</h2>
+      </div>
+    </div>
+  </div>
+  

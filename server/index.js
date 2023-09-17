@@ -3,8 +3,11 @@ const bodyParser = require('body-parser');
 const sequelize = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
 const cors = require("cors");
+const courseRoutes = require('./routes/courseRoutes');
+
 //To insert data from csv file----->
 // const services = require('./controllers/serviceController');
+
 
 
 
@@ -21,6 +24,7 @@ const User = require('./models/User');
 User.sync();
 
 app.use(authRoutes);
+app.use(courseRoutes);
 
 app.listen(3000, () => {
   console.log('Server is listening on port 3000');

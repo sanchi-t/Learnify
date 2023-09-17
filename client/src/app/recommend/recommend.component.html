@@ -1,0 +1,29 @@
+<div class="header-strip">
+  <h1 class="header-title">RECOMMENDED COURSES FOR YOU</h1>
+</div>
+
+<div class="course-cards">
+  <div
+    class="arrow arrow-previous"
+    (click)="showPreviousSet()"
+    style="cursor: pointer;"
+    [ngClass]="{'disabled': !showPreviousArrow}"
+  >
+    <i class="fas fa-chevron-left"></i>
+  </div>
+
+  <div *ngFor="let course of coursesToShow()" class="course-card">
+    <h2 class="course-title hk-grotesk-font">{{ course.title | titleTruncate }}</h2>
+    <p class="course-description libre-baskerville-font">{{ course.summary }}</p>
+    <button class="button-74" role="button">Learn More</button>
+  </div>
+
+  <div
+    class="arrow arrow-next"
+    (click)="showNextSet()"
+    style="cursor: pointer;"
+    [ngClass]="{'disabled': !showNextArrow}"
+  >
+    <i class="fas fa-chevron-right"></i>
+  </div>
+</div>

@@ -12,6 +12,13 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component';
+import { CoursesComponent } from './courses/courses.component';
+import { RecommendComponent } from './recommend/recommend.component';
+import { DisplayCoursesComponent } from './display-courses/display-courses.component';
+import { AuthService } from './_service/auth.service';
+import { TitleTruncatePipe } from './_pipe/title-truncate.pipe';
+import { NotFoundComponent } from './not-found/not-found.component';
+
 
 
 @NgModule({
@@ -21,6 +28,11 @@ import { SignupComponent } from './signup/signup.component';
     HomeComponent,
     LoginComponent,
     SignupComponent,
+    CoursesComponent,
+    RecommendComponent,
+    DisplayCoursesComponent,
+    TitleTruncatePipe,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +44,7 @@ import { SignupComponent } from './signup/signup.component';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

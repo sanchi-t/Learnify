@@ -13,7 +13,9 @@ export class AuthService implements CanActivate {
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    this.isLoggedInSubject.next(!!this.getToken());
+  }
 
   login(username: string, password: string) {
     return this.http.post<any>(`${this.apiUrl}/login`, { username, password }).pipe(

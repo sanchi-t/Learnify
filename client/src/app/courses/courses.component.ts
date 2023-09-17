@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-courses',
@@ -50,29 +49,13 @@ export class CoursesComponent {
     },
     // Add more courses as needed
   ];
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router) {}
 
   viewCourse(course: Course) {
     // Navigate to the '/courses' route with parameters
-    this.router.navigate(['/courses'], { queryParams: { getCourse: course.name } });
-    this.sendToBackend(course.name);
+    this.router.navigate(['/displayCourses'], { queryParams: { getCourse: course.name } });
   }
 
-  sendToBackend(courseName: string) {
-    const apiUrl = `http://localhost:3000/courses?courseName=${courseName}`; // Your backend API URL with query parameter
-
-    // Make an HTTP GET request to send the parameter to the backend
-    this.http.get(apiUrl).subscribe(
-      (response) => {
-        console.log('Parameter sent to the backend successfully:', response);
-        // Handle the response from the backend if needed
-      },
-      (error) => {
-        console.error('Error sending parameter to the backend:', error);
-        // Handle any errors from the backend request
-      }
-    );
-  }
 }
 
 interface Course {

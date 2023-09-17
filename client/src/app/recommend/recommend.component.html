@@ -1,45 +1,29 @@
-<!-- recommended-courses.component.html -->
-
 <div class="header-strip">
-    <img src="path-to-your-image.jpg" alt="Header Image" class="header-image" />
-    <h1 class="header-title">Recommended Courses for You</h1>
+  <h1 class="header-title">RECOMMENDED COURSES FOR YOU</h1>
+</div>
+
+<div class="course-cards">
+  <div
+    class="arrow arrow-previous"
+    (click)="showPreviousSet()"
+    style="cursor: pointer;"
+    [ngClass]="{'disabled': !showPreviousArrow}"
+  >
+    <i class="fas fa-chevron-left"></i>
   </div>
-  
-  <div class="course-cards">
-    <!-- Course Card 1 -->
-    <div class="course-card">
-      <h2 class="course-title">Course Title 1</h2>
-      <p class="course-description">
-        This is a brief description of Course 1. It covers various topics and is designed to help you learn new skills.
-      </p>
-      <button class="learn-more-button">Learn More</button>
-    </div>
-  
-    <!-- Course Card 2 -->
-    <div class="course-card">
-      <h2 class="course-title">Course Title 2</h2>
-      <p class="course-description">
-        This is a brief description of Course 2. It covers various topics and is designed to help you learn new skills.
-      </p>
-      <button class="learn-more-button">Learn More</button>
-    </div>
-  
-    <!-- Course Card 3 -->
-    <div class="course-card">
-      <h2 class="course-title">Course Title 3</h2>
-      <p class="course-description">
-        This is a brief description of Course 3. It covers various topics and is designed to help you learn new skills.
-      </p>
-      <button class="learn-more-button">Learn More</button>
-    </div>
-  
-    <!-- Course Card 4 -->
-    <div class="course-card">
-      <h2 class="course-title">Course Title 4</h2>
-      <p class="course-description">
-        This is a brief description of Course 4. It covers various topics and is designed to help you learn new skills.
-      </p>
-      <button class="learn-more-button">Learn More</button>
-    </div>
+
+  <div *ngFor="let course of coursesToShow()" class="course-card">
+    <h2 class="course-title hk-grotesk-font">{{ course.title | titleTruncate }}</h2>
+    <p class="course-description libre-baskerville-font">{{ course.summary }}</p>
+    <button class="button-74" role="button">Learn More</button>
   </div>
-  
+
+  <div
+    class="arrow arrow-next"
+    (click)="showNextSet()"
+    style="cursor: pointer;"
+    [ngClass]="{'disabled': !showNextArrow}"
+  >
+    <i class="fas fa-chevron-right"></i>
+  </div>
+</div>

@@ -1,30 +1,42 @@
-const User = require('../models/User');
-
-
+const { Op } = require('sequelize');
+const DesignUdemy = require('../models/DesignUdemyModel');
+const sequelize = require('../config/database')
 
 
 exports.getCourse = async (req, res) => {
-  const { courseName} = req.query;
-  console.log(courseName);
+    const { courseName } = req.query;
 
-//   try {
-//     const user = await User.findOne({ where: { username } });
+    try {
+        // Search for courses where the title contains the courseName
+        const courses = await DesignUdemy.findAll({
+            where: {
+                title: {
+                    [Op.iLike]: `%${courseName}%`, // Use ILIKE for case-insensitive search
+                },
+            },
+        });
 
-//     if (!user) {
-//       return res.status(401).json({ message: 'Invalid credentials' });
-//     }
+        // Respond with the found courses
+        res.json({ courses });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred' });
+    }
+};
 
-//     const validPassword = await bcrypt.compare(password, user.password);
-//     // const validPassword=user.password;
 
-//     if (!validPassword) {
-//       return res.status(401).json({ message: 'Invalid credentials' });
-//     }
+exports.getRecommendedCourse = async (req, res) => {
+    try {
+        // Retrieve the top 12 records from the table
+        const courses = await DesignUdemy.findAll({
+            order: sequelize.literal('random()'),
+            limit: 12,
+        });
 
-//     const token = jwt.sign({ id: user.id, username: user.username }, secretKey, { expiresIn: '1h' });
-//     res.json({ token });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'An error occurred' });
-//   }
+        // Respond with the found courses
+        res.json({ courses });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred' });
+    }
 };

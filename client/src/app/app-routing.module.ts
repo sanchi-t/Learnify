@@ -6,14 +6,28 @@ import { SignupComponent } from './signup/signup.component';
 import { CoursesComponent } from './courses/courses.component';
 import { AuthService } from './_service/auth.service';
 import { RecommendComponent } from './recommend/recommend.component';
+import { DisplayCoursesComponent } from './display-courses/display-courses.component';
+import { AuthGuard } from './_service/auth.gaurd';
+import { NotFoundComponent } from './not-found/not-found.component'; 
+
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: SignupComponent},
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [AuthGuard], 
+  },
+  {
+    path: 'register',
+    component: SignupComponent,
+    canActivate: [AuthGuard], 
+  },
   {path: 'courses', component: CoursesComponent, canActivate: [AuthService]},
-  {path: 'recommend', component: RecommendComponent},
+  {path: 'recommend', component: RecommendComponent, canActivate: [AuthService]},
+  {path: 'displayCourses', component: DisplayCoursesComponent, canActivate: [AuthService]},
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

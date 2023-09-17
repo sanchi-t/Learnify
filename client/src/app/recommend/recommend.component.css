@@ -2,66 +2,144 @@
 
 /* Style for the header strip */
 .header-strip {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #3498db; /* Background color for the header strip */
-    padding: 20px;
-    color: #fff; /* Text color for the header */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  margin-bottom: 2rem;
+  color: #000000; /* Text color for the header */
+  font-weight: bold;
+  background-image: url("../../assets/recommend_background.jpg");
+
+}
+
+.header-title {
+  font-size: 2.4rem; /* Adjust the font size as needed */
+  font-weight: 500;
+}
+
+/* Style for the course cards */
+.course-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.course-card {
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  max-width: 300px;
+  text-align: left;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden; /* Add this to hide overflowing color */
+}
+
+/* Add this rule for the right corner color */
+.course-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+  z-index: 1;
+  transition: background-color 0.3s ease;
+}
+
+/* Add this rule to change the whole card color on hover */
+.course-card:hover {
+  background-color: #A8DF8E; /* Use the same random color on hover */
+}
+
+.course-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 10px 0;
+  margin-bottom: 4rem;
+  min-height: 4rem;
+}
+
+.course-description {
+  font-size: 1.1rem;
+  margin: 10px 0;
+  padding-bottom: 2rem;
+}
+
+
+
+
+
+.hk-grotesk-font {
+  font-family: 'HK Grotesk', sans-serif;
+  /* Add any other styling you want for the heading here */
+}
+
+.libre-baskerville-font {
+  font-family: 'Libre Baskerville', serif;
+  /* Add any other styling you want for the course description here */
+}
+
+
+/* CSS */
+.button-74 {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-74:hover {
+  background-color: #fff;
+}
+
+.button-74:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .button-74 {
+    min-width: 120px;
+    padding: 0 25px;
   }
-  
-  .header-image {
-    max-width: 200px; /* Adjust the image size as needed */
-    height: auto;
-    margin-right: 20px;
-  }
-  
-  .header-title {
-    font-size: 24px; /* Adjust the font size as needed */
-  }
-  
-  /* Style for the course cards */
-  .course-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px;
-  }
-  
-  .course-card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 10px;
-    max-width: 300px;
-    text-align: center;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .course-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 10px 0;
-  }
-  
-  .course-description {
-    font-size: 16px;
-    margin: 10px 0;
-  }
-  
-  .learn-more-button {
-    background-color: #3498db; /* Button background color */
-    color: #fff; /* Button text color */
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .learn-more-button:hover {
-    background-color: #2980b9; /* Hover state background color */
-  }
-  
+}
+
+
+.card-title {
+  color: #db0075;
+}
+.card-text {
+  color: #17E6E6;
+}
+.list-inline-item {
+  color: #ffd700
+}
+.price {
+  color: #9B1B30;
+}
+.btn-pink {
+  background-color: #fcb2b2 !important;
+}
+.disabled {
+  opacity: 0.5; /* Reduce opacity to indicate that it's disabled */
+  pointer-events: none; /* Disable pointer events to make it unclickable */
+  /* You can add other styling to indicate disabled state */
+}
+
+

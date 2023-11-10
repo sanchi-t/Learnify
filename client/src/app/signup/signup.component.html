@@ -1,68 +1,69 @@
 <div class="authentication-card-container" fxLayout="row" fxLayoutAlign="center">
-    <div class="left-column" fxFlex="70">
-      <mat-card class="authentication-card">
-        <mat-card-content class="container">
-          <div fxLayout="column" fxLayoutAlign="center stretch">
-            <mat-card-title class="headerTitle">Sign Up</mat-card-title>
-            
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" fxLayout="column" class="matform">
-              <div class="input-container" id="firstcontainer">
-                <input type="email" placeholder="Email" formControlName="username">
-                <i class="material-icons">mail</i>
-              </div>
-              <mat-error *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.hasError('required')">
-                Email is required
-              </mat-error>
-              <mat-error *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.hasError('email')">
-                Email must be a valid Email
-              </mat-error>
-              
-              <div class="input-container">
-                <input type="text" placeholder="Name" formControlName="name">
-                <i class="material-icons">perm_identity</i>
-              </div>
-              <mat-error *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.hasError('required')">
-                Name is required
-              </mat-error>
-              
-              <div class="input-container">
-                <input [type]="hidePassword ? 'password' : 'text'" placeholder="Password" formControlName="password">
-                <i class="material-icons">lock</i>
-                <i class="material-icons"
-                  id="eye"
-                  (click)="togglePasswordVisibility()"
-                  [class.active]="!hidePassword">{{ hidePassword ? 'visibility' : 'visibility_off' }}</i>
-              </div>
-              <mat-error *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')">
-                Password is required
-              </mat-error>
-              
-              <div class="input-container">
-                <input type='password' placeholder="Password Confirmation" formControlName="passwordConfirm">
-                <i class="material-icons">lock</i>
-              </div>
-              <mat-error *ngIf="registerForm.get('passwordConfirm')?.touched && registerForm.get('passwordConfirm')?.hasError('required')">
-                Password Confirmation is required
-              </mat-error>
-              <mat-error *ngIf="registerForm.get('passwordConfirm')?.dirty && registerForm.hasError('passwordsNotMatching')">
-                Passwords are not matching!
-              </mat-error>
-              <div class="remember-forgot">
-                <label>
-                </label>
-              </div>
-              <div>Already Have account? <a [routerLink]="['/login']">Login</a></div>
-              <!-- <mat-card-actions class="flexRow"> -->
-                <button class="signupB" type="submit" mat-button [disabled]="!registerForm.valid">Register</button>
-              <!-- </mat-card-actions> -->
-            </form>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-    <div class="right-column" fxFlex="30">
-        <h1 class="headerTitle2">create new account</h1>
-      <img src="..\..\assets\Signup_Image.png" alt="singup_image">
-    </div>
+  <div class="left-column" fxFlex="70">
+    <mat-card class="authentication-card">
+      <mat-card-content class="container">
+        <div fxLayout="column" fxLayoutAlign="center stretch">
+          <mat-card-title class="headerTitle">Sign Up</mat-card-title>
+
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" fxLayout="column" class="matform">
+            <div class="input-container" id="firstcontainer">
+              <input type="email" placeholder="Email" formControlName="username">
+              <i class="material-icons">mail</i>
+            </div>
+            <mat-error
+              *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.hasError('required')">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.hasError('email')">
+              Email must be a valid Email
+            </mat-error>
+
+            <div class="input-container">
+              <input type="text" placeholder="Name" formControlName="name">
+              <i class="material-icons">perm_identity</i>
+            </div>
+            <mat-error *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.hasError('required')">
+              Name is required
+            </mat-error>
+
+            <div class="input-container">
+              <input [type]="hidePassword ? 'password' : 'text'" placeholder="Password" formControlName="password">
+              <i class="material-icons">lock</i>
+              <i class="material-icons" id="eye" (click)="togglePasswordVisibility()" [class.active]="!hidePassword">{{
+                hidePassword ? 'visibility' : 'visibility_off' }}</i>
+            </div>
+            <mat-error
+              *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')">
+              Password is required
+            </mat-error>
+
+            <div class="input-container">
+              <input type='password' placeholder="Password Confirmation" formControlName="passwordConfirm">
+              <i class="material-icons">lock</i>
+            </div>
+            <mat-error
+              *ngIf="registerForm.get('passwordConfirm')?.touched && registerForm.get('passwordConfirm')?.hasError('required')">
+              Password Confirmation is required
+            </mat-error>
+            <mat-error
+              *ngIf="registerForm.get('passwordConfirm')?.dirty && registerForm.hasError('passwordsNotMatching')">
+              Passwords are not matching!
+            </mat-error>
+            <div class="remember-forgot">
+              <label>
+              </label>
+            </div>
+            <div>Already Have account? <a [routerLink]="['/login']">Login</a></div>
+            <!-- <mat-card-actions class="flexRow"> -->
+            <button class="signupB" type="submit" mat-button [disabled]="!registerForm.valid">Register</button>
+            <!-- </mat-card-actions> -->
+          </form>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
-  
+  <div class="right-column" fxFlex="30">
+    <h1 class="headerTitle2">create new account</h1>
+    <img src="..\..\assets\Signup_Image.png" alt="singup_image">
+  </div>
+</div>

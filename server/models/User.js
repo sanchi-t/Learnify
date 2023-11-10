@@ -20,6 +20,20 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  phoneno: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    unique: true,
+  },
   createdAt: {
     type: DataTypes.DATE,
     allowNull: true,

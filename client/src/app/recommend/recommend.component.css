@@ -136,10 +136,3 @@
 .btn-pink {
   background-color: #fcb2b2 !important;
 }
-.disabled {
-  opacity: 0.5; /* Reduce opacity to indicate that it's disabled */
-  pointer-events: none; /* Disable pointer events to make it unclickable */
-  /* You can add other styling to indicate disabled state */
-}
-
-

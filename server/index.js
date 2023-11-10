@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const sequelize = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
 const cors = require("cors");
 const courseRoutes = require('./routes/courseRoutes');
 
@@ -25,6 +26,7 @@ User.sync();
 
 app.use(authRoutes);
 app.use(courseRoutes);
+app.use(userRoutes);
 
 app.listen(3000, () => {
   console.log('Server is listening on port 3000');

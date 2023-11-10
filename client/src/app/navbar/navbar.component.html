@@ -2,7 +2,7 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
 
   <!-- Navbar brand -->
-  <mdb-navbar-brand><span class="material-icons">school</span><a class="navbar-brand" href="#">LEARNIFY</a></mdb-navbar-brand>
+  <mdb-navbar-brand><span class="material-icons">school</span><a class="navbar-brand" [routerLink]="['/home']">LEARNIFY</a></mdb-navbar-brand>
 
   <!-- Collapsible content -->
   <links>
@@ -55,6 +55,12 @@
           <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
         </div>
       </li>
+
+      
+        
+        
+      
+        
     </ul>
     <!-- Links -->
 
@@ -64,8 +70,37 @@
         <input class="form-control mr-sm-2" type="text" placeholder="Search">
       </div>
     </form>
-  </links>
-  <!-- Collapsible content -->
+    <!-- <a class="nav-link waves-light" >
+      <img
+        [src]="'https://api.dicebear.com/7.x/thumbs/svg?seed=' + name + '&radius=50'"
+        alt="avatar"
+        class="avatar-img"
+      />
 
+    </a> -->
+    <!-- Profile dropdown -->
+    <div class="nav-item dropdown" dropdown>
+      <button dropdownToggle type="button" class="nav-link dropdown-toggle waves-light">
+        <img [src]="'https://api.dicebear.com/7.x/thumbs/svg?seed=' + name + '&radius=50'" class="avatar-img" alt="Avatar">
+      </button>
+      <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+        <a class="dropdown-item" [routerLink]="['/profile']">
+          <i class="fa fa-user"></i> Profile
+        </a>
+        <a class="dropdown-item">
+          <i class="fa fa-calendar"></i> Calendar
+        </a>
+        <a class="dropdown-item">
+          <i class="fa fa-sliders"></i> Settings
+        </a>
+        <div class="divider dropdown-divider"></div>
+        <a class="dropdown-item">
+          <i class="fa fa-power-off"></i> Logout
+        </a>
+      </div>
+    </div>
+    
+
+  </links>
 </mdb-navbar>
 <!--/.Navbar-->

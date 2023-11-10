@@ -22,7 +22,7 @@ body {
   background: #181828;
   font-size: 14px;
   line-height: 1;
-  min-height: fit-content;
+  min-height: 1200px;
 }
 
 label {
@@ -413,7 +413,7 @@ button {
 .light {
       width: 300px;
     height: 0px;
-    border-bottom: 550px solid rgb(44 255 255 / 24%);
+    border-bottom: 70rem solid rgb(44 255 255 / 24%);
     border-left: 50px solid transparent;
     border-right: 50px solid transparent;
     position: absolute;
@@ -457,6 +457,7 @@ button {
     top: 55%;
   }
   }
+
 @media (max-width: 950px) {
   .lamp__wrap {
     max-height: 100vh;
@@ -481,6 +482,7 @@ button {
   .e-social__icon {
     padding-bottom: 0;
   }
+
 }
 @media (max-width: 750px) {
   body, html{
@@ -497,6 +499,7 @@ button {
     padding-bottom: 100px;
     height: 100vh;
   }
+
   }
 @media (max-width: 650px) {
   .message__title {

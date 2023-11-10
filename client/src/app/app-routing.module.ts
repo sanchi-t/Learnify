@@ -9,6 +9,7 @@ import { RecommendComponent } from './recommend/recommend.component';
 import { DisplayCoursesComponent } from './display-courses/display-courses.component';
 import { AuthGuard } from './_service/auth.gaurd';
 import { NotFoundComponent } from './not-found/not-found.component'; 
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'courses', component: CoursesComponent, canActivate: [AuthService]},
   {path: 'recommend', component: RecommendComponent, canActivate: [AuthService]},
   {path: 'displayCourses', component: DisplayCoursesComponent, canActivate: [AuthService]},
+  {path: 'profile', component: ProfileComponent},
   { path: '**', component: NotFoundComponent },
 ];
 

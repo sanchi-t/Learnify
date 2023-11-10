@@ -18,7 +18,9 @@ import { DisplayCoursesComponent } from './display-courses/display-courses.compo
 import { AuthService } from './_service/auth.service';
 import { TitleTruncatePipe } from './_pipe/title-truncate.pipe';
 import { NotFoundComponent } from './not-found/not-found.component';
-
+import { CarouselModule } from '@coreui/angular';
+import { ProfileComponent } from './profile/profile.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     DisplayCoursesComponent,
     TitleTruncatePipe,
     NotFoundComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MDBBootstrapModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
+    CarouselModule,
+    FormsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

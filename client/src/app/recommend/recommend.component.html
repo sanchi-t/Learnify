@@ -1,4 +1,4 @@
-<div class="header-strip">
+<!-- <div class="header-strip">
   <h1 class="header-title">RECOMMENDED COURSES FOR YOU</h1>
 </div>
 
@@ -26,4 +26,25 @@
   >
     <i class="fas fa-chevron-right"></i>
   </div>
+</div> -->
+
+<div class="header-strip">
+  <h1 class="header-title">RECOMMENDED COURSES FOR YOU</h1>
 </div>
+<c-carousel [dark]="true" [wrap]="true" [interval]="0">
+  <c-carousel-inner>
+    <c-carousel-item *ngFor="let number of [0,1,2,3]">
+      <div class="course-cards">
+      <div class="d-flex justify-content-between">
+      <div class="course-card" *ngFor="let course of coursesToShow()" class="course-card">
+        <h2 class="course-title hk-grotesk-font">{{ course.title | titleTruncate }}</h2>
+        <p class="course-description libre-baskerville-font">{{ course.summary }}</p>
+        <button class="button-74" role="button">Learn More</button>
+      </div>
+    </div>
+    </div>
+    </c-carousel-item>
+  </c-carousel-inner>
+  <c-carousel-control (click)="showPreviousSet()" [routerLink] caption="Previous" direction="prev"></c-carousel-control>
+  <c-carousel-control (click)="showNextSet()" [routerLink] caption="Next" direction="next"></c-carousel-control>
+</c-carousel>

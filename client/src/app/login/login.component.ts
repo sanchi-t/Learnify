@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../_service/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CookieService } from 'ngx-cookie-service';
 
 // import { AuthenticationService } from '../services/authentication.service';
 
@@ -24,7 +25,7 @@ export class LoginComponent {
     });
   }
 
-  constructor(private authService: AuthService, private router: Router,private snackBar: MatSnackBar) {}
+  constructor(private authService: AuthService, private router: Router,private snackBar: MatSnackBar, private cookieService: CookieService) {}
 
   hidePassword = true;
 
@@ -43,6 +44,7 @@ export class LoginComponent {
     const { username, password,check } = this.loginForm.value;
     this.authService.login(username, password).subscribe(response => {
       // Save token to local storage or handle as needed
+      this.cookieService.set('cookieName', 'cookieValue');
       if(check){
         localStorage.setItem('token', response.token);
       }

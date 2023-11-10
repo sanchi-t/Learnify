@@ -40,3 +40,39 @@ exports.getRecommendedCourse = async (req, res) => {
         res.status(500).json({ message: 'An error occurred' });
     }
 };
+
+
+
+
+exports.getCourseData = (req, res) => {
+    // Implement logic to fetch course data from the database
+    // Example using Mongoose:
+    // Course.find({}, (err, courses) => {
+    //   if (err) {
+    //     return res.status(500).json({ error: 'Internal Server Error' });
+    //   }
+  
+    //   return res.json(courses);
+    // });
+    const courses = [[
+        { name: 'Web Design', progress: 80 },
+        { name: 'Website Markup', progress: 72 },
+        { name: 'One Page', progress: 89 },
+        { name: 'Mobile Template', progress: 55 },
+        
+    
+      ],
+      [
+        { name: 'Web Design', progress: 80 },
+        { name: 'Website Markup', progress: 72 },
+        { name: 'One Page', progress: 89 },
+        { name: 'Mobile Template', progress: 55 },
+        { name: 'Backend API', progress: 66 },
+        { name: 'Backend API', progress: 66 }
+    
+      ]]
+      ;
+    
+
+    return res.json(courses);
+  };

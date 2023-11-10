@@ -8,14 +8,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit  {
+  name: string;
   selected: string = 'Home';
   list:any;
   isLoggedIn: boolean = false;
+  isProfileDropdownOpen: boolean = false;
   constructor(private authService: AuthService, private router: Router) {
     this.list = [
        'Home',
        'Procing',
     ]; 
+    const storedName = localStorage.getItem('userName');
+    
+    // Check if the name is available in local storage
+    if (storedName) {
+      this.name = storedName;
+    } else {
+      // Set a default name if it's not available in local storage
+      this.name = 'DefaultName';
+    }
   
   }
 
@@ -24,6 +35,13 @@ export class NavbarComponent implements OnInit  {
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
+  }
+
+  toggleProfileDropdown() {
+    this.isProfileDropdownOpen = !this.isProfileDropdownOpen;
+  }
+  closeProfileDropdown() {
+    this.isProfileDropdownOpen = false;
   }
 
   select(item: string) {

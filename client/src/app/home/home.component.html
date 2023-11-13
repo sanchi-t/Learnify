@@ -1,1 +1,41 @@
-<p>home works!</p>
+<div class="accordion-card">
+  <h1>Current Courses</h1>
+
+  <details *ngFor="let course of courses;index as i1" (toggle)="handleToggle(course)">
+    <summary>
+      {{ course.title }}
+      <span>{{ calculateDoneCount(course.items.lecturesArray || []) }} / {{ course.items.lectures }}</span>
+
+
+      <div class="progress-bar" [style.height]="'1rem'" [style.width]="calculateProgress(course.items.lecturesArray || []) + '%'"></div>
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th>Action</th>
+          <th>Lectures</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of course.items.lecturesArray">
+          <td [class.done]="item.status === 'Done'" [class.revisit]="item.status === 'Revisit'">
+            <div class="box">
+              <select [(ngModel)]="item.status" (change)="handleChange(item)">
+                <option>Pending</option>
+                <option>Done</option>
+                <option>Revisit</option>
+              </select>
+            </div>
+          </td>
+          <td title="" [class.done]="item.status === 'Done'" [class.revisit]="item.status === 'Revisit'">
+            <a target="_blank" rel="noopener" [href]="course.items.link">{{ course.title }} Lecture {{ item.lectureNumber }}</a>
+          </td>
+          <td title="Add Note" [class.done]="item.status === 'Done'" [class.revisit]="item.status === 'Revisit'">
+            <button (click)="addNote(item.notes,i1,item.lectureNumber-1)"><i class="material-icons">format_list_bulleted_add</i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </details>
+</div>

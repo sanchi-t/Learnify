@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+*, *:after, *:before {
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: 16px;
+}
+
+body {
+	font-family: "Inter", sans-serif;
+	line-height: 1.5;
+	min-height: 100vh;
+	font-size: 1.25rem;
+}
+
+*:focus {
+	outline: none;
+}
+
+body > div {
+	width: 90%;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5rem;
+	margin-bottom: 5rem;
+}
+
+
+/* details div > * + * {
+	margin-top: 1.5em;
+} */
+
+details + details {
+	margin-top: .5rem;
+}
+
+summary {
+	list-style: none;
+}
+
+summary::-webkit-details-marker {
+	display: none;
+}
+
+summary {
+	border: 2px solid #000;
+	padding: .75em 1em;
+	cursor: pointer;
+	position: relative;
+	padding-left: calc(1.75rem + .75rem + .75rem);
+}
+
+summary:before {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: .75rem;
+	content: "↓";
+	width: 1.75rem;
+	height: 1.75rem;
+	background-color: #000;
+	color: #FFF;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+details[open] summary {
+	background-color: #eee;
+}
+
+details[open] summary:before {
+	content: "↑";
+}
+
+summary:hover {
+	background-color: #eee;
+}
+
+a {
+	color: inherit;
+	font-weight: 600;
+	text-decoration: none;
+	box-shadow: 0 1px 0 0;
+}
+
+a:hover {
+	box-shadow: 0 3px 0 0;
+}
+
+code {
+	font-family: monospace;
+	font-weight: 600;
+}
+
+
+.accordion-card {
+    padding: 3rem;
+  }
+  
+  /* Optional: Add margin or padding to details for spacing between them */
+.details {
+	margin-bottom: 10px;
+}
+
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-top: 10px;
+	margin-left: auto;
+  	margin-right: auto;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f5f5f5;
+  }
+
+  a {
+    text-decoration: none;
+    color: #3f51b5;
+  }
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  button img {
+    width: 24px;
+    height: 24px;
+  }
+
+  td:first-child {
+    width: 20%; /* Adjust the width as needed */
+  }
+
+  td:nth-child(2) {
+    width: 60%; /* Adjust the width as needed */
+  }
+
+  td:last-child {
+    width: 20%; /* Adjust the width as needed */
+  }
+
+
+
+
+  
+  
+  
+  .box select {
+	background-color: rgb(241 244 245);
+	color: rgb(0, 0, 0);
+	padding: 9px;
+	width: 7rem;
+	border: none;
+	font-size: 0.9rem;
+	/* box-shadow: 0 5px 25px rgba(0, 0, 0.1, 0.1); */
+	-webkit-appearance: button;
+	appearance: button;
+	outline: none;
+  }
+  
+  .box::before {
+	content: "\f13a";
+	font-family: FontAwesome;
+	width: 20%;
+	height: 100%;
+	text-align: center;
+	font-size: 0.9rem;
+	line-height: 45px;
+	display: none;
+	color: rgba(150, 147, 147, 0.5);
+	pointer-events: none;
+  }
+  
+  .box:hover::before {
+	color: rgba(255, 255, 255, 0.6);
+	background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .box select option {
+	padding: 30px;
+  }
+
+  td{
+	border-width: 0.5rem;
+	border-color: #FFF;
+  }
+
+  td.done {
+	background-color: #c7edc5;
+  }
+  
+  td.revisit {
+	background-color: #fbddaa; /* Red color for 'Revisit' */
+  }
+
+  span{
+	float:right;
+  }

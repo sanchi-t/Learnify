@@ -24,9 +24,6 @@
         <a class="nav-link waves-light" mdbWavesEffect>{{n}}</a>
       </li>
       
-      <li *ngIf="isLoggedIn" (click)="logout()" class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect>Logout</a>
-      </li>
 
       <li *ngIf="isLoggedIn" [routerLink]="['/courses']" class="nav-item">
         <a class="nav-link waves-light" mdbWavesEffect>Courses</a>
@@ -79,7 +76,8 @@
 
     </a> -->
     <!-- Profile dropdown -->
-    <div class="nav-item dropdown" dropdown>
+    
+    <div *ngIf="isLoggedIn" class="nav-item dropdown" dropdown>
       <button dropdownToggle type="button" class="nav-link dropdown-toggle waves-light">
         <img [src]="'https://api.dicebear.com/7.x/thumbs/svg?seed=' + name + '&radius=50'" class="avatar-img" alt="Avatar">
       </button>
@@ -94,7 +92,7 @@
           <i class="fa fa-sliders"></i> Settings
         </a>
         <div class="divider dropdown-divider"></div>
-        <a class="dropdown-item">
+        <a class="dropdown-item" (click)="logout()">
           <i class="fa fa-power-off"></i> Logout
         </a>
       </div>

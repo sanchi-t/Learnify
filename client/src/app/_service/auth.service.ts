@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { CanActivate, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class AuthService implements CanActivate {
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router,private cookieService: CookieService) {
     this.isLoggedInSubject.next(!!this.getToken());
   }
 
@@ -49,6 +51,7 @@ export class AuthService implements CanActivate {
 
   logout() {
     // Perform logout logic here
+    this.cookieService.delete('user');
     localStorage.removeItem(this.tokenKey);
     sessionStorage.removeItem(this.tokenKey);
     this.isLoggedInSubject.next(false);

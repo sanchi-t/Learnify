@@ -43,6 +43,36 @@ exports.getRecommendedCourse = async (req, res) => {
 
 
 
+exports.getCurrentCourse = async (req, res) => {
+    const courses = [
+        {
+          title: 'Ultimate AWS Certified Solutions Architect Associate SAA-C03',
+          items: 
+            { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:392 },
+            // Add more items as needed
+          
+        },
+        {
+            title: 'Ansible for the Absolute Beginner - Hands-On - DevOps',
+            items: 
+              { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:35 },
+              // Add more items as needed
+            
+        },
+        {
+            title: 'Azure DevOps Fundamentals for Beginners',
+            items: 
+              { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:44 },
+              // Add more items as needed
+            
+        },
+      ];
+    
+
+    return res.json(courses);
+};
+
+
 
 exports.getCourseData = (req, res) => {
     // Implement logic to fetch course data from the database

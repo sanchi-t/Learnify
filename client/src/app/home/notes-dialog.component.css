@@ -1,0 +1,30 @@
+/* notes-dialog.component.css */
+
+h2 {
+    text-align: center;
+  }
+  
+  mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  textarea {
+    width: 100%;
+    margin-top: 10px; /* Adjust the margin as needed */
+    border: 1px solid #ccc; /* Border color */
+    padding: 8px;
+  }
+  
+  mat-dialog-actions {
+    justify-content: center;
+    margin-top: 15px; /* Adjust the margin as needed */
+  }
+
+  body{
+    padding: 3rem;
+  }
+
+
+  

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../_service/profile.service';
+import { CookieService } from 'ngx-cookie-service';
+
 
 interface UserProfile {
   fullname: string;
@@ -37,14 +39,16 @@ export class ProfileComponent implements OnInit {
   name: string;
   editMode: boolean;
 
-  constructor(private profileService: ProfileService) {
+  constructor(private profileService: ProfileService,private cookieService: CookieService) {
     this.editMode = false;
     this.editedUserProfile = { ...this.userProfile };
-    const storedName = localStorage.getItem('userName');
+    const cookie = this.cookieService.get('user');
     
-    // Check if the name is available in local storage
-    if (storedName) {
-      this.name = storedName;
+    if (cookie) {
+      const userDecode = decodeURI(cookie);
+      const userJson = JSON.parse(userDecode);
+      this.name = userJson.name;
+      console.log(userJson);
     } else {
       // Set a default name if it's not available in local storage
       this.name = 'DefaultName';

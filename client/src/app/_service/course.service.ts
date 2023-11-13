@@ -41,6 +41,25 @@ export class CourseService {
       })
     );
   }
+
+
+  getCurrentCourses(): Observable<CurrentCourse[]> {
+    const url = `${this.apiUrl}/current-course`;
+    return this.http.get<CurrentCourse[]>(url);
+  }
+}
+
+export interface CourseItem {
+  status: 'Pending' | 'Done' | 'Revisit';
+  link: string;
+  image: string;
+  lectures: number;
+  lecturesArray?: { lectureNumber: number; status: string, notes: string }[];
+}
+
+export interface CurrentCourse {
+  title: string;
+  items: CourseItem;
 }
 
 export interface Course {

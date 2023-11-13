@@ -44,7 +44,11 @@ export class LoginComponent {
     const { username, password,check } = this.loginForm.value;
     this.authService.login(username, password).subscribe(response => {
       // Save token to local storage or handle as needed
-      this.cookieService.set('cookieName', 'cookieValue');
+      const user = { ...response.user };
+      delete user.password;
+      delete user.id;
+      const serializedUser = JSON.stringify(user);
+      this.cookieService.set('user', serializedUser);
       if(check){
         localStorage.setItem('token', response.token);
       }

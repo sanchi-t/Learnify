@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_service/auth.service'; 
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -8,10 +10,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit  {
+  name: string = '';
   selected: string = 'Home';
   list:any;
   isLoggedIn: boolean = false;
-  constructor(private authService: AuthService, private router: Router) {
+  isProfileDropdownOpen: boolean = false;
+  constructor(private authService: AuthService, private router: Router, private cookieService: CookieService) {
     this.list = [
        'Home',
        'Procing',
@@ -21,9 +25,19 @@ export class NavbarComponent implements OnInit  {
 
   ngOnInit() {
     // Subscribe to the isLoggedIn$ observable to update the isLoggedIn property
-    this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
-      this.isLoggedIn = isLoggedIn;
+    this.authService.user$.subscribe((user) => {
+      this.isLoggedIn = !!user.token;
+      this.name = user.name;
+      console.log(user);
     });
+  
+  }
+
+  toggleProfileDropdown() {
+    this.isProfileDropdownOpen = !this.isProfileDropdownOpen;
+  }
+  closeProfileDropdown() {
+    this.isProfileDropdownOpen = false;
   }
 
   select(item: string) {
@@ -36,6 +50,6 @@ export class NavbarComponent implements OnInit  {
   logout() {
     this.authService.logout(); // Call your AuthService logout method
     this.isLoggedIn = false; // Update the isLoggedIn variable
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home2']);
   }
 }

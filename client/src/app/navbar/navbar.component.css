@@ -7,3 +7,22 @@
   background-color: #007bff; /* Example background color for active link */
   color: #fff; /* Example text color for active link */
 }
+
+.nav-link{
+  padding: 0;
+}
+.navbar-brand{
+  font-size: 1.5rem;
+}
+mdb-navbar-brand{
+  float: left;
+}
+a{
+  font-size: 1.2rem;
+}
+.avatar-img{
+  /* position: relative;
+  right: -5rem; */
+  height: 3.5rem;
+}
+

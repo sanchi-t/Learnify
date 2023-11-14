@@ -4,7 +4,6 @@ const sequelize = require('../config/database');
 const User = sequelize.define('User', {
   id: {
     type: DataTypes.INTEGER,
-    primaryKey: true,
     autoIncrement: true,
   },
   name: {
@@ -14,11 +13,30 @@ const User = sequelize.define('User', {
   username: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
+    primaryKey: true,
   },
   password: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  phoneno: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    unique: true,
+  },
+  masterCourseStatus: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: 'Not Enrolled',
+  },
+  completedNo: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
   },
   createdAt: {
     type: DataTypes.DATE,

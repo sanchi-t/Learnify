@@ -2,25 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { CanActivate, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService implements CanActivate {
   private readonly tokenKey = 'token';
   private apiUrl = 'http://localhost:3000';
-  private isLoggedInSubject = new BehaviorSubject<boolean>(false);
-  isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
+  private userSubject = new BehaviorSubject<User>({ token: '', name: '' });
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.isLoggedInSubject.next(!!this.getToken());
-  }
+  user$: Observable<User> = this.userSubject.asObservable();
+
+  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {
+    this.updateUser(); // Update the user object
+    }
 
   login(username: string, password: string) {
     return this.http.post<any>(`${this.apiUrl}/login`, { username, password }).pipe(
-      tap(() => {
-        this.isLoggedInSubject.next(true); // Update authentication status on successful login
+      tap((userData) => {
+        console.log('Login Response:', userData);
+        this.updateUser(); // Update the user object
       })
     );
   }
@@ -33,8 +35,7 @@ export class AuthService implements CanActivate {
     if (this.isLoggedIn()) {
       return true;
     } else {
-      // Redirect to the login page or any other route
-      this.router.navigate(['/login']); // Replace 'login' with your login route
+      this.router.navigate(['/home2']);
       return false;
     }
   }
@@ -43,14 +44,60 @@ export class AuthService implements CanActivate {
     return !!this.getToken();
   }
 
-  getToken(): string | null {
-    return localStorage.getItem(this.tokenKey) || sessionStorage.getItem(this.tokenKey);
+  getToken(): string {
+    return localStorage.getItem(this.tokenKey) || sessionStorage.getItem(this.tokenKey) || '';
   }
 
+  getUserJson(): UserJson {
+    const cookie = this.cookieService.get('user');
+    if (cookie) {
+      const userDecode = decodeURI(cookie);
+      const userJson: UserJson = JSON.parse(userDecode);
+      return userJson;
+    } else {
+      return {
+        id: 0,
+        name: '',
+        username: '',
+        phoneno: null,
+        createdAt: '',
+       updatedAt: '',
+       address: null,
+      }; 
+    }
+  }
+
+  updateUser(): void {
+    const token: string = this.getToken();
+    const name: string = this.getUserJson().name;
+    console.log('Token:', token);
+    console.log('Name:', name);
+    const user: User = { token, name };
+    console.log('User:', user);
+    this.userSubject.next(user);
+  }
+  
+
   logout() {
-    // Perform logout logic here
+    this.cookieService.delete('user');
     localStorage.removeItem(this.tokenKey);
     sessionStorage.removeItem(this.tokenKey);
-    this.isLoggedInSubject.next(false);
+    this.updateUser(); // Reset the user object to default on logout
   }
+}
+
+interface User {
+  token: string;
+  name: string;
+}
+
+export interface UserJson {
+  id: number;
+  name: string;
+  username: string;
+  phoneno: string | null;
+  createdAt: string;
+  updatedAt: string;
+  address: string | null;
+  // Add more fields here
 }

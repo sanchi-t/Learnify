@@ -18,12 +18,15 @@ import { DisplayCoursesComponent } from './display-courses/display-courses.compo
 import { AuthService } from './_service/auth.service';
 import { TitleTruncatePipe } from './_pipe/title-truncate.pipe';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CarouselModule } from '@coreui/angular';
+import { ProfileComponent } from './profile/profile.component';
+import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
+import { FooterComponent } from './footer/footer.component';
 import { AssessmentComponent } from './assessment/assessment.component';
 import { InformComponent } from './inform/inform.component';
 import { FormsModule } from '@angular/forms';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { UserProgressChartComponent } from './user-progress-chart/user-progress-chart.component';
-import { ProgressComponent } from './progress/progress.component';
 // import { ChartsModule } from 'ng2-charts';
 
 
@@ -40,11 +43,12 @@ import { ProgressComponent } from './progress/progress.component';
     DisplayCoursesComponent,
     TitleTruncatePipe,
     NotFoundComponent,
+    ProfileComponent,
+    FooterComponent,
     AssessmentComponent,
     InformComponent,
     FeedbackComponent,
     UserProgressChartComponent,
-    ProgressComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,9 @@ import { ProgressComponent } from './progress/progress.component';
     MDBBootstrapModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
-    // ChartsModule,
+    CarouselModule,
+    FormsModule,
+    MdbCheckboxModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

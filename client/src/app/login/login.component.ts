@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../_service/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CookieService } from 'ngx-cookie-service';
 
 // import { AuthenticationService } from '../services/authentication.service';
 
@@ -24,7 +25,7 @@ export class LoginComponent {
     });
   }
 
-  constructor(private authService: AuthService, private router: Router,private snackBar: MatSnackBar) {}
+  constructor(private authService: AuthService, private router: Router,private snackBar: MatSnackBar, private cookieService: CookieService) {}
 
   hidePassword = true;
 
@@ -40,31 +41,34 @@ export class LoginComponent {
   }
 
   public onSubmit() {
-    const { username, password,check } = this.loginForm.value;
-    this.authService.login(username, password).subscribe(response => {
-      // Save token to local storage or handle as needed
-      if(check){
-        localStorage.setItem('token', response.token);
-      }
-      else{
-        sessionStorage.setItem('token', response.token);
-      } 
-      
-      this.router.navigate(['/home']);
-      
-    }
-    ,
-    error => {
-      // Handle registration errors
-      console.error(error);
+    const { username, password, check } = this.loginForm.value;
+    this.authService.login(username, password).subscribe(
+      (response) => {
+        const user = { ...response.user };
+        delete user.password;
+        delete user.id;
+        const serializedUser = JSON.stringify(user);
+        this.cookieService.set('user', serializedUser);
+  
+        // Set the token based on the 'check' flag
+        const token = response.token;
+        if (check) {
+          localStorage.setItem('token', token);
+        } else {
+          sessionStorage.setItem('token', token);
+        }
+        this.authService.updateUser();
+        this.router.navigate(['/home']);
+      },
+      (error) => {
+        console.error(error);
   
         if (error.error.message === 'Invalid credentials') {
-          // Show an error pop-up dialog
           this.showErrorMessage('Invalid credentials');
         }
-      } 
+      }
     );
-    
   }
+  
 }
 

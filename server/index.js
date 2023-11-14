@@ -23,8 +23,10 @@ app.use(cors());
 // Define associations and sync the database
 const User = require('./models/User');
 User.sync();
-const Completed_Courses = require('./models/Completed_Courses');
-Completed_Courses.sync();
+const CompletedCourses = require('./models/CompletedCourses');
+CompletedCourses.sync();
+const EnrolledCourses = require('./models/EnrolledCourses');
+EnrolledCourses.sync();
 
 app.use(authRoutes);
 app.use(courseRoutes);

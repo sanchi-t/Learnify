@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Completed_Courses = sequelize.define('Completed_Courses', {
+const EnrolledCourses = sequelize.define('EnrolledCourses', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -11,11 +11,15 @@ const Completed_Courses = sequelize.define('Completed_Courses', {
         primaryKey: true,
         allowNull: false,
     },
-    courses: {
+    course: {
         type: DataTypes.STRING,
         primaryKey: true,
+        allowNull: false,
+    },
+    courseDetails: {
+        type: DataTypes.ARRAY(DataTypes.TEXT),
         allowNull: false,
     }
 });
 
-module.exports = Completed_Courses;
+module.exports = EnrolledCourses;

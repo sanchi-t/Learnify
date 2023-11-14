@@ -10,11 +10,13 @@ import { DisplayCoursesComponent } from './display-courses/display-courses.compo
 import { AuthGuard } from './_service/auth.gaurd';
 import { NotFoundComponent } from './not-found/not-found.component'; 
 import { ProfileComponent } from './profile/profile.component';
+import { Home2Component } from './home2/home2.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
+  {path: '', redirectTo: 'home2', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent, canActivate: [AuthService] },
+  {path: 'home2', component: Home2Component},
   {
     path: 'login',
     component: LoginComponent,
@@ -28,7 +30,8 @@ const routes: Routes = [
   {path: 'courses', component: CoursesComponent, canActivate: [AuthService]},
   {path: 'recommend', component: RecommendComponent, canActivate: [AuthService]},
   {path: 'displayCourses', component: DisplayCoursesComponent, canActivate: [AuthService]},
-  {path: 'profile', component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthService]},
+
   { path: '**', component: NotFoundComponent },
 ];
 

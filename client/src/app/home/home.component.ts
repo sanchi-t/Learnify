@@ -25,6 +25,7 @@ interface CurrentCourse {
 
 export class HomeComponent {
   courses: CurrentCourse[] = [];
+  slides: any[] = new Array(3).fill({id: -1, src: '', title: '', subtitle: ''});
 
   constructor(private courseService: CourseService, public dialog: MatDialog){
 
@@ -32,6 +33,15 @@ export class HomeComponent {
 
   ngOnInit() {
     this.loadCourseData();    
+    this.slides[0] = {
+      src: '../assets/',
+    };
+    this.slides[1] = {
+      src: '../assets/homepage_2.jpg',
+    }
+    this.slides[2] = {
+      src: '../assets/homepage_2.jpg',
+    }
   }
 
   loadCourseData() {

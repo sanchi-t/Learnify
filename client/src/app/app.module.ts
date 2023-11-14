@@ -21,6 +21,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CarouselModule } from '@coreui/angular';
 import { ProfileComponent } from './profile/profile.component';
 import { FormsModule } from '@angular/forms';
+import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -36,6 +38,7 @@ import { FormsModule } from '@angular/forms';
     TitleTruncatePipe,
     NotFoundComponent,
     ProfileComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     CarouselModule,
     FormsModule,
+    MdbCheckboxModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

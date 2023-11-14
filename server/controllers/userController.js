@@ -1,43 +1,31 @@
-// const UserProfile = require('../models/userProfile'); // Assuming you have a model for user profiles
+const User = require('../models/User');
+const sequelize = require('../config/database')
 
-exports.getUserProfile = (req, res) => {
-  // Implement logic to fetch user profile data from the database
-  // Example using Mongoose:
-//   UserProfile.findOne({ /* Your query here */ }, (err, userProfile) => {
-//     if (err) {
-//       return res.status(500).json({ error: 'Internal Server Error' });
-//     }
 
-//     if (!userProfile) {
-//       return res.status(404).json({ error: 'User Profile not found' });
-//     }
+exports.getUserProfile = async (req, res) => {
 
-//     return res.json(userProfile);
-//   });
-const userProfile = {
-        fullname: 'Kenneth Valdez',
-        email: 'fip@jukmuh.al',
-        phone: '(239) 816-9029',
-        mobile: '(320) 380-4539',
-        address: 'Bay Area, San Francisco, CA'
-        // Initialize other fields here
-      };
+  const { username} = req.params;
+  try {
+    const user = await User.findOne({ where: { username } });
 
-    return res.json(userProfile);
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid' });
+    }
+    res.json({user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'An error occurred' });
+  }
 };
 
 exports.saveUserProfile = (req, res) => {
-
-  UserProfile.findOneAndUpdate(
-    { /* Your query to find the user profile to update */ },
-    req.body, // Assuming the entire user profile is sent in the request body
-    { new: true, upsert: true }, // Options to return the new document and create if not exists
-    (err, userProfile) => {
-      if (err) {
-        return res.status(500).json({ error: 'Internal Server Error' });
-      }
-
+  User.update(
+    req.body.user, // Assuming the entire user profile is sent in the request body
+    {where: { username: req.body.user.username }}
+    ).then(userProfile => {
       return res.json(userProfile);
-    }
-  );
+    })
+    .catch(err => {
+      return res.status(500).json({ error: 'Internal Server Error' });
+    });
 };

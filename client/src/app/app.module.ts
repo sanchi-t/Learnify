@@ -12,6 +12,20 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component';
+import { CoursesComponent } from './courses/courses.component';
+import { RecommendComponent } from './recommend/recommend.component';
+import { DisplayCoursesComponent } from './display-courses/display-courses.component';
+import { AuthService } from './_service/auth.service';
+import { TitleTruncatePipe } from './_pipe/title-truncate.pipe';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AssessmentComponent } from './assessment/assessment.component';
+import { InformComponent } from './inform/inform.component';
+import { FormsModule } from '@angular/forms';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { UserProgressChartComponent } from './user-progress-chart/user-progress-chart.component';
+import { ProgressComponent } from './progress/progress.component';
+// import { ChartsModule } from 'ng2-charts';
+
 
 
 @NgModule({
@@ -21,6 +35,16 @@ import { SignupComponent } from './signup/signup.component';
     HomeComponent,
     LoginComponent,
     SignupComponent,
+    CoursesComponent,
+    RecommendComponent,
+    DisplayCoursesComponent,
+    TitleTruncatePipe,
+    NotFoundComponent,
+    AssessmentComponent,
+    InformComponent,
+    FeedbackComponent,
+    UserProgressChartComponent,
+    ProgressComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,8 +55,9 @@ import { SignupComponent } from './signup/signup.component';
     MDBBootstrapModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
+    // ChartsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

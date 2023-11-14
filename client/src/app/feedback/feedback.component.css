@@ -1,0 +1,58 @@
+.feedback-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .header {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center horizontally */
+    text-align: center;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+    font-weight: bold; /* Make the heading bold */
+     margin-right: 10px;
+  }
+  
+  .header-image {
+    width: 80px;
+    height: 80px;
+    margin-left: 15px;
+  }
+  
+  .feedback-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 10px;
+  }
+  
+  .feedback-column {
+    flex-basis: calc(32% - 20px); 
+    /* flex: 1; */
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 25px;;
+  }
+  
+  .feedback-column h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .feedback-column p {
+    font-size: 14px;
+  }
+  /* Updated styles for rating stars */
+.rating-stars {
+    width: 90px; /* Adjust the width to make the rating stars smaller */
+    margin: 10px auto; /* Center-align the stars image */
+    display: block; /* Ensure the image is centered horizontally */
+}

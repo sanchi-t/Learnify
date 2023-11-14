@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Feedback</title>
+    <link rel="stylesheet" href="feedback.component.css"> 
+</head>
+<body>
+    <div class="feedback-container">
+        <div class="header">
+            <h1>Feedback from Users</h1>
+            <img src="..\..\assets\feedback.jpg" alt="User Feedback" class="header-image">
+        </div><br><br>
+        <div class="feedback-row">
+            <div class="feedback-column">
+                <!-- <span *ngFor="let star of stars; let i = index" class="star" [class.filled]="i < userRating">&#9733;</span> -->
+                <h3>User 1</h3>
+                <img src="..\..\assets\rating.jpg" alt="Rating Stars" class="rating-stars">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut libero nec odio laoreet feugiat.</p>
+            </div>
+            <div class="feedback-column">
+                <h3>User 2</h3>
+                <img src="..\..\assets\rating.jpg" alt="Rating Stars" class="rating-stars">
+                <p>Nullam euismod, tortor nec ullamcorper varius, libero augue semper metus, sit amet pellentesque felis lorem nec ligula.</p>
+            </div>
+            <div class="feedback-column">
+                <h3>User 3</h3>
+                <img src="..\..\assets\rating.jpg" alt="Rating Stars" class="rating-stars">
+                <p>Proin vel mi eget tortor fermentum pharetra ac sed velit. Sed scelerisque tincidunt tincidunt.</p>
+            </div>
+            <!-- <div class="feedback-column">
+                <h3>User 4</h3>
+                <p>Proin vel mi eget tortor fermentum pharetra ac sed velit. Sed scelerisque tincidunt tincidunt.</p>
+            </div> -->
+        </div>
+    </div>
+</body>
+</html>

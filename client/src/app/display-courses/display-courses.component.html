@@ -1,0 +1,64 @@
+<div class="container mt-50 mb-50">
+  <div class="row">
+    <div>
+      <div *ngFor="let course of courses.slice(startIndex, endIndex)" class="card card-body mt-3">
+        <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
+          <div class="mr-2 mb-3 mb-lg-0">
+            <img class="img-fluid img-responsive rounded product-image" [src]="course.image" width="150" height="150" alt="">
+          </div>
+          <div class="media-body">
+            <h6 class="media-title font-weight-semibold">
+              <h3 data-abc="true">{{ course.title | titleTruncate }}</h3>
+            </h6>
+
+            <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
+              <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">{{course.level_course}}</a></li><span class="dot"></span>
+              <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">{{ course.no_of_lectures }}</a></li><span class="dot"></span>
+              <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">{{ course.duration }}</a></li>
+
+            </ul>
+
+            <p class="mb-3">{{ course.summary }}</p>
+
+            <ul class="list-inline list-inline-dotted mb-0">
+              <li class="list-inline-item">Author: <a href="#" data-abc="true">{{ course.author }}</a></li>
+            </ul>
+          </div>
+          <div class="mt-3 mt-lg-0 ml-lg-3 text-center">
+            <h3 class="mb-0 font-weight-semibold">{{ course.price }}</h3>
+
+            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+              <i class="fa" [ngClass]="{'fa-star': star <= convertToNumber(course.rating), 'fa-star-o': star > convertToNumber(course.rating)}"></i>
+            </ng-container>
+
+            <div class="text-muted">{{ course.review }} reviews</div>
+
+            <!-- Modify the button to call the openCourseUrl method -->
+            <button class="btn btn-warning mt-4 text-white" (click)="openCourseUrl(course.title_url)">
+              <i class="icon-cart-add mr-2"></i> Checkout Course
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-center mt-3">
+  
+</div>
+
+<!-- Pagination controls -->
+<div class="d-flex justify-content-center mt-3">
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <a class="page-link" (click)="onPageChange(currentPage - 1)">Previous</a>
+    </li>
+    <li class="page-item" *ngFor="let page of getPages()" [class.active]="currentPage === page">
+      <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === getTotalPages()">
+      <a class="page-link" (click)="onPageChange(currentPage + 1)">Next</a>
+    </li>
+  </ul>
+</div>

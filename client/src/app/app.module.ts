@@ -20,9 +20,15 @@ import { TitleTruncatePipe } from './_pipe/title-truncate.pipe';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CarouselModule } from '@coreui/angular';
 import { ProfileComponent } from './profile/profile.component';
-import { FormsModule } from '@angular/forms';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { FooterComponent } from './footer/footer.component';
+import { AssessmentComponent } from './assessment/assessment.component';
+import { InformComponent } from './inform/inform.component';
+import { FormsModule } from '@angular/forms';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { UserProgressChartComponent } from './user-progress-chart/user-progress-chart.component';
+// import { ChartsModule } from 'ng2-charts';
+
 
 
 @NgModule({
@@ -39,6 +45,10 @@ import { FooterComponent } from './footer/footer.component';
     NotFoundComponent,
     ProfileComponent,
     FooterComponent,
+    AssessmentComponent,
+    InformComponent,
+    FeedbackComponent,
+    UserProgressChartComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,47 @@
+/* .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  } */
+  
+  .content {
+    text-align: center; /* Center-align content within the container */
+  }
+  
+  .message {
+    /* background-color: #ffc107; */
+    padding: 10px;
+    font-weight: bold;
+    margin-top: 10px; /* Add space between the image and message */
+    /* font-size: 40px; */
+  }
+
+  /* Style the image */
+.content img {
+    margin-top: 25px; /* Add margin to move the image down */
+  }
+
+  body {
+    background-image: src('..\..\assets\bg.jpg'); 
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    background-attachment: fixed; /* Fixed background */
+  }
+
+  .message button {
+    padding: 10px 20px;
+    /* background-color: #007bff; */
+    color: rgb(43, 41, 41);
+    border: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  /* Adjust button styles on hover (optional) */
+  .message button:hover {
+    background-color: #bad1eb;
+  }

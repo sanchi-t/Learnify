@@ -1,0 +1,109 @@
+/* Style the assessment container */
+.container {
+  display: grid;
+  grid-template-columns: 65% 35%; /* Adjust the column widths as needed */
+  grid-gap: 20px; /* Add some space between the columns */
+}
+
+.assessment-container {
+  width: 40rem;
+  float: left;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-left: 4%;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+  display: block;
+  margin: auto;
+  border: 4px solid #313030;
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  background-color: #d9dbdd;
+  color: #201e1e;
+  cursor: pointer;
+}
+
+/* Style the image container */
+.image-container {
+  width: 35%; /* Adjust the width to make the image container larger */
+  float: left;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+/* Style the image */
+.image-container img {
+  max-width: 100%; /* Make the image responsive to the container's width */
+  height: auto; /* Maintain the image's aspect ratio */
+  width: 100%;
+}
+.question label {
+  font-size: 18px;
+  overflow-wrap: break-word; /* Allow longer questions to wrap to the next line */
+}
+.question {
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+/* Center the range slider */
+.question input[type="range"] {
+  display: block;
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+/* Display the range values above the range slider */
+.question input[type="range"] + span {
+  display: block;
+  text-align: center;
+}
+
+.slider{
+  float:left;
+  margin-left: -2rem;
+  padding: 2rem;
+}
+
+#q2{
+  width: 30rem;
+}
+
+
+/* Style the labels and radio buttons for better user experience */
+label input[type="radio"] {
+  margin-right: 5px;
+}
+
+/* Style the labels when the radio button is selected */
+label input[type="radio"]:checked + label {
+  font-weight: bold;
+}
+
+/* Apply some basic styling to the radio buttons and labels */
+.radio-group {
+  display: inline-block; /* Display the radio groups in the same line */
+  margin-right: 20px; /* Add space between the radio groups */
+}
+
+/* input[type="radio"] {
+  display: none; } */
+
+/* label {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+} */
+
+/* Style the labels when the radio buttons are selected */
+/* input[type="radio"]:checked + label {
+  background-color: #007bff; /* Change to your preferred color */
+  /* color: #fff;
+  border-color: #007bff; */
+/* } */

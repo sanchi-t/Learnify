@@ -43,9 +43,7 @@
               "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "./node_modules/popper.js/dist/umd/popper.min.js",
               "./node_modules/chart.js/dist/Chart.js",
-              "./node_modules/hammerjs/hammer.min.js"
-
-            ]
+              "./node_modules/hammerjs/hammer.min.js"            ]
           },
           "configurations": {
             "production": {

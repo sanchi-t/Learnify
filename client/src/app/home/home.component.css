@@ -1,23 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-*, *:after, *:before {
-	box-sizing: border-box;
-}
-
-:root {
-	font-size: 16px;
-}
-
-body {
-	font-family: "Inter", sans-serif;
-	line-height: 1.5;
-	min-height: 100vh;
-	font-size: 1.25rem;
-}
-
-*:focus {
-	outline: none;
-}
 
 body > div {
 	width: 90%;
@@ -209,4 +190,20 @@ table {
 
   span{
 	float:right;
+  }
+
+  hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 2px solid #000000;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+  }
+  
+  mdb-carousel-item{
+	height: 34rem;
+  }
+  img{
+	object-fit: contain;
   }

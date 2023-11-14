@@ -1,16 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../_service/profile.service';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService, UserJson } from '../_service/auth.service';
 
 
-interface UserProfile {
-  fullname: string;
-  email: string;
-  phone: string;
-  mobile: string;
-  address: string;
-  // Add more fields here
-}
+
+
 
 interface Course {
   name: string;
@@ -24,35 +19,36 @@ interface Course {
 })
 export class ProfileComponent implements OnInit {
 
-  userProfile: UserProfile = {
-    fullname: '',
-    email: '',
-    phone: '',
-    mobile: '',
+  userProfile: UserJson = {
+    id: 0,
+    name: '',
+    username: '',
+    phoneno: '',
+    createdAt: '',
     address: '',
+    updatedAt: '',
     
   };
 
+  userJson: UserJson = {
+    id: 0,
+    name: '',
+    username: '',
+    phoneno: null,
+    createdAt: '',
+    updatedAt: '',
+    address: null,
+  }
+
   courses: Course[][] =[];
   
-  editedUserProfile: UserProfile;
-  name: string;
+  editedUserProfile: UserJson;
   editMode: boolean;
 
-  constructor(private profileService: ProfileService,private cookieService: CookieService) {
+  constructor(private profileService: ProfileService,private cookieService: CookieService, private authService: AuthService) {
     this.editMode = false;
     this.editedUserProfile = { ...this.userProfile };
-    const cookie = this.cookieService.get('user');
-    
-    if (cookie) {
-      const userDecode = decodeURI(cookie);
-      const userJson = JSON.parse(userDecode);
-      this.name = userJson.name;
-      console.log(userJson);
-    } else {
-      // Set a default name if it's not available in local storage
-      this.name = 'DefaultName';
-    }
+    this.userJson = authService.getUserJson();
 
     // Load user profile data from the backend
     
@@ -65,10 +61,10 @@ export class ProfileComponent implements OnInit {
 
   loadUserProfile() {
     
-    this.profileService.getUserProfile().subscribe(
+    this.profileService.getUserProfile(this.userJson.username).subscribe(
       (data) => {
-        this.userProfile = data;
-        console.log(data);
+        const {user} = data; 
+        this.userProfile = user;
       },
       (error) => {
         console.error('Error loading user profile', error);
@@ -102,9 +98,20 @@ export class ProfileComponent implements OnInit {
   saveChanges() {
     // Update the user profile with the edited data
     this.userProfile = { ...this.editedUserProfile };
-    // Save changes to the backend
-    // Assuming you have a saveUserProfile function in the ProfileService
-    // this.profileService.saveUserProfile(this.editedUserProfile).subscribe(...);
+    this.profileService.saveUserProfile(this.editedUserProfile).subscribe(
+      (data) => {
+        console.log('saved',data);
+        if(data[0]==1){
+          const serializedUser = JSON.stringify(this.userProfile);
+          this.cookieService.set('user', serializedUser);
+          this.authService.updateUser();
+        }
+        
+      },
+      (error) => {
+        console.error('Error loading course data', error);
+      }
+    );
     // Exit edit mode
     this.editMode = false;
   }
@@ -113,5 +120,11 @@ export class ProfileComponent implements OnInit {
   cancelEdit() {
     // Exit edit mode and revert to the original data
     this.editMode = false;
+  }
+
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
   }
 }

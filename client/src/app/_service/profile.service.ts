@@ -1,20 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UserJson } from './auth.service';
 
-interface UserProfile {
-  fullname: string;
-  email: string;
-  phone: string;
-  mobile: string;
-  address: string;
-  // Add more fields here
-}
+
 
 interface Course {
   name: string;
   progress: number;
 }
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +20,18 @@ export class ProfileService {
   
   constructor(private http: HttpClient) {}
 
-    getUserProfile(): Observable<UserProfile> {
-        return this.http.get<UserProfile>(`${this.apiUrl}/user-profile`);
-        // return this.userProfile; 
-    }
+  getUserProfile(username: string): Observable<{user:UserJson}> {
+    // Use URL parameters for the username
+    return this.http.get<any>(`${this.apiUrl}/user-profile/${username}`);
+  }
+  
 
-    getCourseData(): Observable<Course[][]> {
-        return this.http.get<Course[][]>(`${this.apiUrl}/course-data`);
-    }
+  getCourseData(): Observable<Course[][]> {
+      return this.http.get<Course[][]>(`${this.apiUrl}/course-data`);
+  }
+
+  saveUserProfile(user: UserJson): Observable<[val:number]>{
+    return this.http.post<any>(`${this.apiUrl}/user-profile`,{user});
+
+  }
 }

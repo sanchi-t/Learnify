@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit  {
-  name: string;
+  name: string = '';
   selected: string = 'Home';
   list:any;
   isLoggedIn: boolean = false;
@@ -20,27 +20,17 @@ export class NavbarComponent implements OnInit  {
        'Home',
        'Procing',
     ]; 
-    const cookie = this.cookieService.get('user');
-    
-    // Check if the name is available in local storage
-    console.log(cookie);
-    if (cookie) {
-      const userDecode = decodeURI(cookie);
-      const userJson = JSON.parse(userDecode);
-      this.name = userJson.name;
-      console.log(userJson);
-    } else {
-      // Set a default name if it's not available in local storage
-      this.name = 'DefaultName';
-    }
   
   }
 
   ngOnInit() {
     // Subscribe to the isLoggedIn$ observable to update the isLoggedIn property
-    this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
-      this.isLoggedIn = isLoggedIn;
+    this.authService.user$.subscribe((user) => {
+      this.isLoggedIn = !!user.token;
+      this.name = user.name;
+      console.log(user);
     });
+  
   }
 
   toggleProfileDropdown() {
@@ -60,6 +50,6 @@ export class NavbarComponent implements OnInit  {
   logout() {
     this.authService.logout(); // Call your AuthService logout method
     this.isLoggedIn = false; // Update the isLoggedIn variable
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home2']);
   }
 }

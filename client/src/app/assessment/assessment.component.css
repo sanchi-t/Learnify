@@ -1,14 +1,15 @@
 /* Style the assessment container */
-.container {
-  display: grid;
-  grid-template-columns: 65% 35%; /* Adjust the column widths as needed */
-  grid-gap: 20px; /* Add some space between the columns */
+
+
+.container-wrapper {
+  display: flex;
 }
 
 .assessment-container {
   width: 40rem;
-  float: left;
+  /* float: left; */
   padding: 20px;
+  flex: 1;
   box-sizing: border-box;
   margin-left: 4%;
 }
@@ -31,6 +32,7 @@ button[type="submit"] {
   width: 35%; /* Adjust the width to make the image container larger */
   float: left;
   padding: 20px;
+  flex: 1;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -67,7 +69,7 @@ button[type="submit"] {
 .slider{
   float:left;
   margin-left: -2rem;
-  padding: 2rem;
+  padding: 3rem;
 }
 
 #q2{
@@ -83,6 +85,9 @@ label input[type="radio"] {
 /* Style the labels when the radio button is selected */
 label input[type="radio"]:checked + label {
   font-weight: bold;
+}
+label{
+  margin-right: 0.5rem;
 }
 
 /* Apply some basic styling to the radio buttons and labels */

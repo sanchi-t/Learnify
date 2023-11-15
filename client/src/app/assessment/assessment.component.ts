@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AssessmentAnswers, CourseService } from '../_service/course.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-assessment',
@@ -8,35 +11,61 @@ import { Component } from '@angular/core';
 
 
 export class AssessmentComponent {
-  paidCourse: boolean;
-  onSliderChange(event: any) {
-    const value = event.target.value;
-    const sliderValueElement = document.getElementById("slider-value");
-  
-    if (sliderValueElement) {
-      sliderValueElement.textContent = value + " hours";}
+  answers: AssessmentAnswers = {
+    question1: '',
+    budget: null,
+    hours: 0,
+    experience: '',
+    courseType: 'free',
+  };
+
+  experienceLevels = ['beginner', 'intermediate', 'advanced'];
+
+  private showErrorMessage(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 5000, // Adjust the duration as needed (milliseconds)
+      panelClass: ['error-snackbar'], // Add custom CSS class for styling
+    });
+  }
+
+  constructor(private router: Router,private snackBar: MatSnackBar,private courseService: CourseService) {}
+
+
+  submitAssessment() {
+    if (!this.answers.question1 || (this.answers.courseType === 'paid' && this.answers.budget === null) || !this.answers.experience) {
+      this.showErrorMessage('Please fill out all fields.');
+
+      return;
     }
-    
-  formData: any = {};
 
-  constructor() {
-    this.paidCourse = false;
+    this.courseService.sendUserQuery(this.answers).subscribe(
+      (data) => {
+        console.log(data);
+        this.router.navigate(['/home']);
+
+      },
+      (error) => {
+        console.error('Error loading user profile', error);
+      }
+    );
+
+    console.log('Assessment Answers:', this.answers);
+
+    // Add your logic to submit the assessment
   }
 
-  submitAssessment(event: Event) {
-    // Prevent the default form submission behavior
-    event.preventDefault();
-
-    // Access the form data from the 'formData' object
-    console.log('Form Data:', this.formData);
-
-    // Here, you can add code to send the 'this.formData' to your backend or perform any other actions.
+  togglePaidCourse() {
+    this.answers.courseType = 'paid';
   }
 
-  toggleCourse(){
-    this.paidCourse = !this.paidCourse;
+  toggleFreeCourse() {
+    this.answers.courseType = 'free';
+    this.answers.budget= null;
   }
 
+  onSliderChange(event: any) {
+    this.answers.hours = event.target.value;
+  }
 
 }
 

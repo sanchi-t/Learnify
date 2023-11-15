@@ -86,7 +86,6 @@ export class HomeComponent {
 
     // After the dialog is closed, you can handle the result if needed
     dialogRef.afterClosed().subscribe(result => {
-      // Handle the result here, if needed
       this.courses[courseIndex].items.lecturesArray[lectureIndex].notes = result;
       console.log('The dialog was closed',result);
     });

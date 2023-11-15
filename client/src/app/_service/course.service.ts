@@ -47,6 +47,10 @@ export class CourseService {
     const url = `${this.apiUrl}/current-course`;
     return this.http.get<CurrentCourse[]>(url);
   }
+
+  sendUserQuery(assessmentAnswers: AssessmentAnswers): Observable<void> {
+    return this.http.post<any>(`${this.apiUrl}/current-course`, {assessmentAnswers});
+  }
 }
 
 export interface CourseItem {
@@ -77,3 +81,13 @@ export interface Course {
   course_card_rating: string;
   price: string;
 }
+
+
+export interface AssessmentAnswers {
+  question1: string;
+  budget: number | null;
+  hours: number;
+  experience: string;
+  courseType: string;
+}
+

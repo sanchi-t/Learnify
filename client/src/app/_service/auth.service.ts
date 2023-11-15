@@ -61,8 +61,10 @@ export class AuthService implements CanActivate {
         username: '',
         phoneno: null,
         createdAt: '',
-       updatedAt: '',
-       address: null,
+        updatedAt: '',
+        address: null,
+        completedNo: 0,
+        masterCourseStatus: 'Not Enrolled',
       }; 
     }
   }
@@ -99,5 +101,7 @@ export interface UserJson {
   createdAt: string;
   updatedAt: string;
   address: string | null;
+  completedNo: number;
+  masterCourseStatus: string;
   // Add more fields here
 }

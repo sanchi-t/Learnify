@@ -1,3 +1,65 @@
+header {
+	line-height: normal;
+	/* background: #000; */
+}
+.logo img{
+	width: 120px;
+	cursor: pointer;
+	transition: all 1s;
+}
+
+a, button {
+	float: left;
+	font-family: "Montserrat", sans-serif;
+	font-weight: 500;
+	font-size: 15px;
+	color: #2E3D49;
+	display: block;
+	text-decoration: none;
+	text-align: center;
+}
+.head-container {
+	margin-top: 50px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-around;
+}
+.quote {
+	width: 600px;
+	transform: translateY(-50px);
+}
+.quote h4 {
+	margin-top: 20px;
+	color: #0009;
+	line-height: 20px;
+}
+.quote p {
+	font-size: 50px;
+	color: #2e2e2e;
+}
+.quote .play {
+	margin-top: 20px;
+	display: flex;
+	/* justify-content: center; */
+	align-items: center;
+}
+.quote .play img {
+	width: 45px;
+	cursor: pointer;
+	filter: drop-shadow(0 0 10px #0002);
+}
+.quote .play span a{
+	margin-left: 10px;
+	font-size: 20px;
+	font-weight: 900;
+	color: rgba(0, 0, 0, 0.8);
+	cursor: pointer;
+}
+.svg-image img{
+	width: 500px;
+	filter: drop-shadow(0 20px 10px rgba(0,0,0,0.2));
+}
 
 
 body > div {
@@ -207,3 +269,43 @@ table {
   img{
 	object-fit: contain;
   }
+
+  
+/*======================
+    404 page
+=======================*/
+
+
+.page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
+}
+
+.page_404  img{ width:100%;}
+
+.four_zero_four_bg{
+ 
+ background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    height: 400px;
+    background-position: center;
+ }
+ 
+ 
+ .four_zero_four_bg h1{
+ font-size:80px;
+ }
+ 
+.four_zero_four_bg h3{
+	font-size:80px;
+}
+			 
+.link_404{			 
+	color: #fff!important;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    display: inline-block;
+}
+.contant_box_404{ margin-top:-50px;}
+.col-sm-10{
+	margin-left: auto;
+    margin-right: auto;
+}

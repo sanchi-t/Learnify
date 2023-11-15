@@ -27,6 +27,8 @@ export class ProfileComponent implements OnInit {
     createdAt: '',
     address: '',
     updatedAt: '',
+    completedNo: 0,
+    masterCourseStatus: 'Not Enrolled',
     
   };
 
@@ -38,6 +40,8 @@ export class ProfileComponent implements OnInit {
     createdAt: '',
     updatedAt: '',
     address: null,
+    completedNo: 0,
+    masterCourseStatus: 'Not Enrolled',
   }
 
   courses: Course[][] =[];
@@ -63,6 +67,7 @@ export class ProfileComponent implements OnInit {
     
     this.profileService.getUserProfile(this.userJson.username).subscribe(
       (data) => {
+        console.log(data);
         const {user} = data; 
         this.userProfile = user;
       },

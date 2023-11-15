@@ -37,21 +37,7 @@
       <li *ngIf="!isLoggedIn" (click)="select('Login')" [ngClass]="{ active: isActive('Login') }" mdbWavesEffect [routerLink]="['/login']" class="nav-item">
         <a class="nav-link waves-light" mdbWavesEffect>Login</a>
       </li>
-      
-
-      <!-- Dropdown -->
-      <li class="nav-item dropdown" dropdown>
-        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-          Basic dropdown<span class="caret"></span>
-        </a>
-        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Action</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
-          <div class="divider dropdown-divider"></div>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
-        </div>
-      </li>
+    
 
       
         
@@ -59,14 +45,7 @@
       
         
     </ul>
-    <!-- Links -->
 
-    <!-- Search form -->
-    <form class="form-inline waves-light" mdbWavesEffect>
-      <div class="md-form my-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      </div>
-    </form>
     <!-- <a class="nav-link waves-light" >
       <img
         [src]="'https://api.dicebear.com/7.x/thumbs/svg?seed=' + name + '&radius=50'"
@@ -84,12 +63,6 @@
       <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
         <a class="dropdown-item" [routerLink]="['/profile']">
           <i class="fa fa-user"></i> Profile
-        </a>
-        <a class="dropdown-item">
-          <i class="fa fa-calendar"></i> Calendar
-        </a>
-        <a class="dropdown-item">
-          <i class="fa fa-sliders"></i> Settings
         </a>
         <div class="divider dropdown-divider"></div>
         <a class="dropdown-item" (click)="logout()">

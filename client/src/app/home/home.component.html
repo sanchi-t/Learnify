@@ -1,67 +1,99 @@
-
-
 <div class="accordion-card">
-  <mdb-carousel [isControls]="true" >
-  <mdb-carousel-item>
-    <img
-      src="../../assets/homepage_1.jpg"
-      class="d-block w-100"
-      alt="..."
-    />
-  </mdb-carousel-item>
-  <mdb-carousel-item>
-    <img
-      src="../../assets/homepage_1.2.jpg"
-      class="d-block w-100"
-      alt="..."
-    />
-  </mdb-carousel-item>
-  <mdb-carousel-item>
-    <img
-      src="../../assets/homepage_1.3.jpg"
-      class="d-block w-100"
-      alt="..."
-    />
-  </mdb-carousel-item>
-</mdb-carousel>
-<hr>
-  <h1>Current Courses</h1>
-
-  <details *ngFor="let course of courses;index as i1" (toggle)="handleToggle(course)">
-    <summary>
-      {{ course.title }}
-      <span>{{ calculateDoneCount(course.items.lecturesArray || []) }} / {{ course.items.lectures }}</span>
-
-
-      <div class="progress-bar" [style.height]="'1rem'" [style.width]="calculateProgress(course.items.lecturesArray || []) + '%'"></div>
-    </summary>
-    <table>
-      <thead>
-        <tr>
-          <th>Action</th>
-          <th>Lectures</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of course.items.lecturesArray">
-          <td [class.done]="item.status === 'Done'" [class.revisit]="item.status === 'Revisit'">
-            <div class="box">
-              <select [(ngModel)]="item.status" (change)="handleChange(item)">
-                <option>Pending</option>
-                <option>Done</option>
-                <option>Revisit</option>
-              </select>
-            </div>
-          </td>
-          <td title="" [class.done]="item.status === 'Done'" [class.revisit]="item.status === 'Revisit'">
-            <a target="_blank" rel="noopener" [href]="course.items.link">{{ course.title }} Lecture {{ item.lectureNumber }}</a>
-          </td>
-          <td title="Add Note" [class.done]="item.status === 'Done'" [class.revisit]="item.status === 'Revisit'">
-            <button (click)="addNote(item.notes,i1,item.lectureNumber-1)"><i class="material-icons">format_list_bulleted_add</i></button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </details>
+  <header id="header">
+		
+		<div class="head-container">
+			<div class="quote">
+				<p>Learning is not attained by chance, it must be sought for with ardor and attended to with diligence.</p>
+				<h4>The ability to read, write, and analyze; the confidence to stand up and demand justice and equality; the qualifications and connections to get your foot in the door and take your seat at the table – all of that starts with education.</h4>
+			</div>
+			<div class="svg-image">
+				<img src="../../assets/homepage_1.2.jpg" alt="svg">
+			</div>
+		</div>
+		
+	</header>
+  <hr />
+  <div class="CurrentCourses">
+    <ng-container *ngIf="courses.length > 0; else takeAssessment">
+      <h1>Current Courses</h1>
+      <details *ngFor="let course of courses; index as i1" (toggle)="handleToggle(course)">
+        <summary>
+          {{ course.title }}
+          <span>{{ calculateDoneCount(course.items.lecturesArray || []) }} / {{ course.items.lectures }}</span>
+          <div
+            class="progress-bar"
+            [style.height]="'1rem'"
+            [style.width]="calculateProgress(course.items.lecturesArray || []) + '%'"
+          ></div>
+        </summary>
+        <table>
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>Lectures</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of course.items.lecturesArray">
+              <td [class.done]="item.status === 'Done'" [class.revisit]="item.status === 'Revisit'">
+                <div class="box">
+                  <select [(ngModel)]="item.status" (change)="handleChange(item)">
+                    <option>Pending</option>
+                    <option>Done</option>
+                    <option>Revisit</option>
+                  </select>
+                </div>
+              </td>
+              <td
+                title=""
+                [class.done]="item.status === 'Done'"
+                [class.revisit]="item.status === 'Revisit'"
+              >
+                <a target="_blank" rel="noopener" [href]="course.items.link">
+                  {{ course.title }} Lecture {{ item.lectureNumber }}
+                </a>
+              </td>
+              <td
+                title="Add Note"
+                [class.done]="item.status === 'Done'"
+                [class.revisit]="item.status === 'Revisit'"
+              >
+                <button (click)="addNote(item.notes, i1, item.lectureNumber - 1)">
+                  <i class="material-icons">format_list_bulleted_add</i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
+    </ng-container>
+  </div>
+  <ng-template #takeAssessment>
+    <section class="page_404">
+      <div class="container">
+        <div class="row">	
+        <div class="col-sm-12 ">
+        <div class="col-sm-10 col-sm-offset-1  text-center">
+        <div class="four_zero_four_bg">
+          <h1 class="text-center ">404</h1>
+        
+        
+        </div>
+        
+        <div class="contant_box_404">
+        <h3 class="h2">
+        Look like you're lost
+        </h3>
+        
+        <p>There are no courses available for you!</p>
+        
+        <a [routerLink]="['/assessment']" class="link_404">Take Assessment</a>
+      </div>
+        </div>
+        </div>
+        </div>
+      </div>
+    </section>
+  </ng-template>
 </div>

@@ -120,6 +120,7 @@ export class HomeComponent {
   }
 
   cancelCourse(): void{
+    console.log('here',this.userJson);
     this.courseService.cancelCurrentCourses(this.userJson.username).subscribe(
       (data) => {
         console.log(data);

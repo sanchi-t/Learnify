@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const DesignUdemy = require('../models/DesignUdemyModel');
 const sequelize = require('../config/database')
+const axios = require('axios');
 
 
 exports.getCourse = async (req, res) => {
@@ -106,6 +107,17 @@ exports.addCurrentCourse = async (req, res) => {
         // Retrieve the top 12 records from the table
         console.log('assesment',assessmentAnswers);
 
+        const flaskApiUrl = 'http://127.0.0.1:5000'; // Replace with your Flask API URL
+        await axios.post(`${flaskApiUrl}/assessment`, { search_term: 'assessment', data: assessmentAnswers }).then(
+          (response) => {
+            console.log(response.data.result);
+          } 
+        );
+
+        // Log the response from Flask API
+        // console.log('Flask API Response:', response.data);
+
+
         // Respond with the found courses
         res.json({ assessmentAnswers });
     } catch (error) {
@@ -133,7 +145,7 @@ exports.selectCurrentCourse = async (req, res) => {
     const { username } = req.params;
     try {
         // Retrieve the top 12 records from the table
-        console.log('delete username course ',username);
+        console.log('select username course ',username);
         const courses= [ [
             {
               title: 'Ultimate AWS Certified Solutions Architect Associate SAA-C03',

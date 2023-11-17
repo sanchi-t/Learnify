@@ -41,7 +41,7 @@ export class AssessmentComponent {
     this.courseService.sendUserQuery(this.answers).subscribe(
       (data) => {
         console.log(data);
-        this.router.navigate(['/select-course']);
+        // this.router.navigate(['/select-course']);
 
       },
       (error) => {

@@ -3,8 +3,12 @@ import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from neattext.functions import clean_text
 from sklearn.metrics.pairwise import cosine_similarity
+import os
 
 app = Flask(__name__)
+
+
+
 
 def load_data(data):
 	df = pd.read_csv(data)
@@ -36,6 +40,35 @@ def search_term_if_not_found(term,df):
         result_df = pd.concat([result_df, df[df['course_title'].str.contains(i)]], ignore_index=True)
     return result_df
 
+
+@app.route('/assessment', methods=['POST'])
+def assessment():
+    data = request.get_json()
+    search_term = data['data']['question1']
+    assessment_data = data['data']
+    search_term = search_term.lower()
+    num_of_rec = 5
+    try:
+        
+        results = get_recommendation(search_term, cosine_sim_mat, df, num_of_rec)
+        print('results ',results,type(results))
+        # return results         
+        return jsonify({'message': 'Assessment data processed successfully'})
+        
+    except Exception as e:
+        search_term = clean_text(search_term, puncts=True, stopwords=True)
+        result_df = search_term_if_not_found(search_term, df)
+        result_df = result_df.sample(n=4)
+        recommendations_list = []
+        for c in result_df['course_title']:
+            results = get_recommendation(c, cosine_sim_mat, df, num_of_rec)
+            print('wow',results,'end')
+            recommendations_list.append(str(results))
+        print('recom list  ', results, type(recommendations_list))
+
+        return jsonify({'result': recommendations_list}) 
+        # print('whats ',results.to_json())
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -59,7 +92,7 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    df = load_data("D:\\sanchit\\programming_shit\\python shit\\Learnify\\model\\udemy_course_data.csv")
+    df = load_data('udemy_course_data.csv')
     df['course_title'] = df['title'].str.lower()
     cosine_sim_mat = vectorize_text_to_cosine_mat(df['course_title'])
     app.run(debug=True)

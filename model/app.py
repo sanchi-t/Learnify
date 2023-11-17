@@ -88,7 +88,7 @@ def get_users():
     print("Using jsonify")
     search_term = "i want to learn python"
     num_of_rec = 5
-    budget = 2000
+    budget = 4000
     time = 5
     level = "Beginner"
     search_term = clean_text(search_term, puncts=True, stopwords=True)

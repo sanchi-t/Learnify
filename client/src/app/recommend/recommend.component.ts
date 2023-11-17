@@ -65,4 +65,9 @@ showNextSet() {
   }
 
 
+  openCourseUrl(url: string) {
+    window.open(url, '_blank');
+  }
+
+
 }

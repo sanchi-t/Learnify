@@ -5,6 +5,8 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const cors = require("cors");
 const courseRoutes = require('./routes/courseRoutes');
+const dotenv = require('dotenv');
+
 
 //To insert data from csv file----->
 // const services = require('./controllers/serviceController');
@@ -12,7 +14,7 @@ const courseRoutes = require('./routes/courseRoutes');
 
 
 
-
+dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());
@@ -27,13 +29,15 @@ const CompletedCourses = require('./models/CompletedCourses');
 CompletedCourses.sync();
 const EnrolledCourses = require('./models/EnrolledCourses');
 EnrolledCourses.sync();
+const DesignUdemy = require('./models/DesignUdemyModel');
+DesignUdemy.sync();
 
 app.use(authRoutes);
 app.use(courseRoutes);
 app.use(userRoutes);
 
-app.listen(3000, () => {
-  console.log('Server is listening on port 3000');
+app.listen(process.env.PORT, () => {
+  console.log(`Server is listening on port 3000 ${process.env.DB_TABLE}`);
 });
 
 

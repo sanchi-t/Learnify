@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { CourseService } from '../_service/course.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NotesDialogComponent } from './notes-dialog.component'; // Create a new component for the notes dialog
+import { AuthService,UserJson } from '../_service/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 
 interface CourseItem {
@@ -25,23 +28,32 @@ interface CurrentCourse {
 
 export class HomeComponent {
   courses: CurrentCourse[] = [];
-  slides: any[] = new Array(3).fill({id: -1, src: '', title: '', subtitle: ''});
+  userJson: UserJson = {
+    id: 0,
+    name: '',
+    username: '',
+    phoneno: null,
+    createdAt: '',
+    updatedAt: '',
+    address: null,
+    completedNo: 0,
+    masterCourseStatus: 'Not Enrolled',
+  }
 
-  constructor(private courseService: CourseService, public dialog: MatDialog){
-
+  constructor(private courseService: CourseService, public dialog: MatDialog, private authService: AuthService, private snackBar: MatSnackBar){
+    this.userJson = authService.getUserJson();
   }
 
   ngOnInit() {
-    this.loadCourseData();    
-    this.slides[0] = {
-      src: '../assets/',
-    };
-    this.slides[1] = {
-      src: '../assets/homepage_2.jpg',
-    }
-    this.slides[2] = {
-      src: '../assets/homepage_2.jpg',
-    }
+    this.loadCourseData();
+  }
+
+
+  private showSuccessMessage(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 5000, // Adjust the duration as needed (milliseconds)
+      panelClass: ['success-snackbar'], // Add custom CSS class for styling
+    });
   }
 
   loadCourseData() {
@@ -105,6 +117,19 @@ export class HomeComponent {
     }
   
     return lecturesArray.filter(item => item.status === 'Done').length;
+  }
+
+  cancelCourse(): void{
+    this.courseService.cancelCurrentCourses(this.userJson.username).subscribe(
+      (data) => {
+        console.log(data);
+        this.showSuccessMessage('Course Cancelled Successfully');
+        this.courses = [];
+      },
+      (error) => {
+        console.error('Error loading user profile', error);
+      }
+    );
   }
   
 

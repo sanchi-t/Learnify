@@ -12,6 +12,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ProfileComponent } from './profile/profile.component';
 import { Home2Component } from './home2/home2.component';
 import { AssessmentComponent } from './assessment/assessment.component'; 
+import { SelectCourseComponent } from './select-course/select-course.component';
 
 
 
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'displayCourses', component: DisplayCoursesComponent, canActivate: [AuthService]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthService]},
   { path: 'assessment', component: AssessmentComponent,canActivate: [AuthService] },
+  { path: 'select-course', component: SelectCourseComponent,canActivate: [AuthService] },
 
 
   { path: '**', component: NotFoundComponent },

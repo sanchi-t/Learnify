@@ -25,7 +25,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AssessmentComponent } from './assessment/assessment.component';
 import { InformComponent } from './inform/inform.component';
 import { FormsModule } from '@angular/forms';
-import { UserProgressChartComponent } from './user-progress-chart/user-progress-chart.component';
+import { SelectCourseComponent } from './select-course/select-course.component';
 
 
 @NgModule({
@@ -44,7 +44,7 @@ import { UserProgressChartComponent } from './user-progress-chart/user-progress-
     FooterComponent,
     AssessmentComponent,
     InformComponent,
-    UserProgressChartComponent,
+    SelectCourseComponent,
   ],
   imports: [
     BrowserModule,

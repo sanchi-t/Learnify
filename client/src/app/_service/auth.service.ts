@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { CanActivate, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService implements CanActivate {
   private readonly tokenKey = 'token';
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = environment.apiUrl;
   private userSubject = new BehaviorSubject<User>({ token: '', name: '' });
 
   user$: Observable<User> = this.userSubject.asObservable();

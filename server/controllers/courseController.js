@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const DesignUdemy = require('../models/DesignUdemyModel');
 const sequelize = require('../config/database')
+const axios = require('axios');
 
 
 exports.getCourse = async (req, res) => {
@@ -75,15 +76,7 @@ exports.getCurrentCourse = async (req, res) => {
 
 
 exports.getCourseData = (req, res) => {
-    // Implement logic to fetch course data from the database
-    // Example using Mongoose:
-    // Course.find({}, (err, courses) => {
-    //   if (err) {
-    //     return res.status(500).json({ error: 'Internal Server Error' });
-    //   }
-  
-    //   return res.json(courses);
-    // });
+
     const courses = [[
         { name: 'Web Design', progress: 80 },
         { name: 'Website Markup', progress: 72 },
@@ -106,3 +99,177 @@ exports.getCourseData = (req, res) => {
 
     return res.json(courses);
   };
+
+
+exports.addCurrentCourse = async (req, res) => {
+    const { assessmentAnswers } = req.body;
+    try {
+        // Retrieve the top 12 records from the table
+        console.log('assesment',assessmentAnswers);
+
+        const flaskApiUrl = 'http://127.0.0.1:5000'; // Replace with your Flask API URL
+        await axios.post(`${flaskApiUrl}/assessment`, { search_term: 'assessment', data: assessmentAnswers }).then(
+          (response) => {
+            console.log(response.data.result);
+          } 
+        );
+
+        // Log the response from Flask API
+        // console.log('Flask API Response:', response.data);
+
+
+        // Respond with the found courses
+        res.json({ assessmentAnswers });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred' });
+    }
+};
+
+exports.deleteCurrentCourse = async (req, res) => {
+    const { username } = req.params;
+    try {
+        // Retrieve the top 12 records from the table
+        console.log('delete username course ',username);
+
+        // Respond with the found courses
+        res.json({ username });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred' });
+    }
+};
+
+
+exports.selectCurrentCourse = async (req, res) => {
+    const { username } = req.params;
+    try {
+        // Retrieve the top 12 records from the table
+        console.log('select username course ',username);
+        const courses= [ [
+            {
+              title: 'Ultimate AWS Certified Solutions Architect Associate SAA-C03',
+              items: 
+                { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:392 },
+                // Add more items as needed
+              
+            },
+            {
+                title: 'Ansible for the Absolute Beginner - Hands-On - DevOps',
+                items: 
+                  { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:35 },
+                  // Add more items as needed
+                
+            },
+            {
+                title: 'Azure DevOps Fundamentals for Beginners',
+                items: 
+                  { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:44 },
+                  // Add more items as needed
+                
+            },
+            {
+              title: 'Azure DevOps Fundamentals for Beginners',
+              items: 
+                { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:44 },
+                // Add more items as needed
+              
+          },
+          {
+            title: 'Azure DevOps Fundamentals for Beginners',
+            items: 
+              { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:44 },
+              // Add more items as needed
+            
+        },
+          ], [
+            {
+              title: 'Ultimate AWS Certified Solutions Architect Associate SAA-C03',
+              items: 
+                { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:392 },
+                // Add more items as needed
+              
+            },
+            {
+                title: 'Ansible for the Absolute Beginner - Hands-On - DevOps',
+                items: 
+                  { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:35 },
+                  // Add more items as needed
+                
+            },
+            {
+                title: 'Azure DevOps Fundamentals for Beginners',
+                items: 
+                  { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:44 },
+                  // Add more items as needed
+                
+            },
+          ], [
+            {
+              title: 'Ultimate AWS Certified Solutions Architect Associate SAA-C03',
+              items: 
+                { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:392 },
+                // Add more items as needed
+              
+            },
+            {
+                title: 'Ansible for the Absolute Beginner - Hands-On - DevOps',
+                items: 
+                  { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:35 },
+                  // Add more items as needed
+                
+            },
+            {
+                title: 'Azure DevOps Fundamentals for Beginners',
+                items: 
+                  { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:44 },
+                  // Add more items as needed
+                
+            },
+          ],
+          [
+            {
+              title: 'Ultimate AWS Certified Solutions Architect Associate SAA-C03',
+              items: 
+                { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:392 },
+                // Add more items as needed
+              
+            },
+          ],
+           [
+            {
+              title: 'Ultimate AWS Certified Solutions Architect Associate SAA-C03',
+              items: 
+                { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:392 },
+                // Add more items as needed
+              
+            },
+            {
+                title: 'Ansible for the Absolute Beginner - Hands-On - DevOps',
+                items: 
+                  { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:35 },
+                  // Add more items as needed
+                
+            },
+            {
+                title: 'Ansible for the Absolute Beginner - Hands-On - DevOps',
+                items: 
+                  { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:35 },
+                  // Add more items as needed
+                
+            },
+            {
+                title: 'Azure DevOps Fundamentals for Beginners',
+                items: 
+                  { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:44 },
+                  // Add more items as needed
+                
+            },
+          ]];
+        // Respond with the found courses
+        res.json(courses);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred' });
+    }
+};

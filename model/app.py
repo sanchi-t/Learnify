@@ -20,19 +20,20 @@ def vectorize_text_to_cosine_mat(data):
 	cosine_sim_mat = cosine_similarity(cv_mat)
 	return cosine_sim_mat
 
-def get_recommendation(title,cosine_sim_mat,df,num_of_rec=10):
-	course_indices = pd.Series(df.index,index=df['course_title']).drop_duplicates()
-	idx = course_indices[title]
-
-	sim_scores =list(enumerate(cosine_sim_mat[idx]))
-	sim_scores = sorted(sim_scores,key=lambda x: x[1],reverse=True)
-	selected_course_indices = [i[0] for i in sim_scores[1:]]
-	selected_course_scores = [i[1] for i in sim_scores[1:]]
-
-	result_df = df.iloc[selected_course_indices].copy()
-	result_df['similarity_score'] = selected_course_scores
-	final_recommended_courses = result_df
-	return final_recommended_courses.head(num_of_rec)
+def get_recommendation(title,cosine_sim_mat,df,budget,time,level,num_of_rec=5):
+    course_indices = pd.Series(df.index,index=df['course_title']).drop_duplicates()
+    idx = course_indices[title]
+    sim_scores =list(enumerate(cosine_sim_mat[idx]))
+    
+    sim_scores = sorted(sim_scores,key=lambda x: x[1],reverse=True)
+    selected_course_indices = [i[0] for i in sim_scores[1:]]
+    selected_course_scores = [i[1] for i in sim_scores[1:]]
+    
+    result_df = df.iloc[selected_course_indices].copy()
+    result_df['similarity_score'] = selected_course_scores
+    filtered_df = df[(df['price'] <= budget) & (df['duration_no'] <= time) & (df['level_course'] == level)]
+    final_recommended_courses = filtered_df
+    return final_recommended_courses.head(num_of_rec)
 
 def search_term_if_not_found(term,df):
     result_df = pd.DataFrame()
@@ -46,6 +47,19 @@ def assessment():
     data = request.get_json()
     search_term = data['data']['question1']
     assessment_data = data['data']
+    coursetype = data['data']['courseType']
+    if(coursetype == "free"):
+        budget = 0
+    else:
+        budget = data['data']['budget']
+    time = data['data']['hours']
+    level = data['data']['experience']
+    if(level == "beginner"):
+        level = "Beginner"
+    elif(level == "intermediate"):
+        level = "Intermediate"
+    else:
+        level = "All Levels"
     search_term = search_term.lower()
     num_of_rec = 5
     
@@ -57,9 +71,8 @@ def assessment():
     for i, c in enumerate(course_names):
         d1 = dict()
         d1["name"] = "masterset" + str(i+1)
-        results = get_recommendation(c,cosine_sim_mat,df,num_of_rec)
+        results = get_recommendation(c,cosine_sim_mat,df,budget,time,level,num_of_rec)
         d1["total_price"] = sum(results["price"])
-        results["duration_no"] = results['duration'].str.extract('(\d+)').astype(float)
         d1["total_duration"] = sum(results["duration_no"])
         cour = []
         for index, row in results.iterrows():
@@ -75,6 +88,9 @@ def get_users():
     print("Using jsonify")
     search_term = "i want to learn python"
     num_of_rec = 5
+    budget = 2000
+    time = 5
+    level = "Beginner"
     search_term = clean_text(search_term, puncts=True, stopwords=True)
     result_df = search_term_if_not_found(search_term, df)
     result_df = result_df.sample(n=4)
@@ -83,9 +99,8 @@ def get_users():
     for i, c in enumerate(course_names):
         d1 = dict()
         d1["name"] = "masterset" + str(i+1)
-        results = get_recommendation(c,cosine_sim_mat,df,num_of_rec)
+        results = get_recommendation(c,cosine_sim_mat,df,budget, time, level,num_of_rec)
         d1["total_price"] = sum(results["price"])
-        results["duration_no"] = results['duration'].str.extract('(\d+)').astype(float)
         d1["total_duration"] = sum(results["duration_no"])
         cour = []
         for index, row in results.iterrows():
@@ -129,6 +144,7 @@ def get_users():
 if __name__ == '__main__':
     df = load_data("D:\learnify\model\out.csv")
     df = df.head(10000)
+    df["duration_no"] = df['duration'].str.extract('(\d+)').astype(float)
     df['course_title'] = df['title'].str.lower()
     cosine_sim_mat = vectorize_text_to_cosine_mat(df['course_title'])
     app.run(debug=True)

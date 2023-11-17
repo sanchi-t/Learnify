@@ -27,6 +27,8 @@ const CompletedCourses = require('./models/CompletedCourses');
 CompletedCourses.sync();
 const EnrolledCourses = require('./models/EnrolledCourses');
 EnrolledCourses.sync();
+const Feedback = require('./models/Feedback');
+Feedback.sync();
 
 app.use(authRoutes);
 app.use(courseRoutes);

@@ -8,9 +8,6 @@ const courseRoutes = require('./routes/courseRoutes');
 const dotenv = require('dotenv');
 
 
-//To insert data from csv file----->
-// const services = require('./controllers/serviceController');
-
 
 
 
@@ -33,6 +30,8 @@ const Feedback = require('./models/Feedback');
 Feedback.sync();
 const MasterCourse = require('./models/MasterCourse');
 MasterCourse.sync();
+const DesignUdemy = require('./models/DesignUdemyModel');
+DesignUdemy.sync();
 
 app.use(authRoutes);
 app.use(courseRoutes);
@@ -44,5 +43,6 @@ app.listen(process.env.PORT, () => {
 
 
 //To insert data from csv file----->
+// const services = require('./controllers/serviceController');
 // const csvFilePath = '../model/Design_Udemy.csv';
 // services.insertDataFromCSV(csvFilePath)

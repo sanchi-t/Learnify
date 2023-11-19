@@ -1,6 +1,6 @@
 <div class="container solution_cards_box">
 
-    <div *ngFor="let course of courses;index as i1" class="solution_card card">
+    <div *ngFor="let course of courseInfo.recommendedCourses;index as i1" class="solution_card card">
     <div class="hover_color_bubble"></div>
         <div class="so_top_icon">
           <svg id="Layer_1" enable-background="new 0 0 512 512" height="50" viewBox="0 0 512 512" width="40" xmlns="http://www.w3.org/2000/svg">
@@ -51,10 +51,10 @@
           <h3>Course {{i1+1}}</h3>
         </div>
         <div class="solu_description">
-          <details *ngFor="let i of course" >
+          <details *ngFor="let i of course.courses" >
             <summary>
-              {{i.title}}
-              <span>Lectures: 50</span>
+              {{i.course_title}}
+              <span>{{i.no_of_lectures}}</span>
             </summary>
           </details>
           

@@ -4,7 +4,7 @@
   align-items: stretch; /*stretches all cards same height*/
   flex-wrap: wrap;
   justify-content: space-around; /*some space between cards*/
-  margin: auto;
+  width: 90%;
   margin-top: 5rem;
   margin-bottom: 5rem;
 }
@@ -80,6 +80,12 @@ details {
 	margin-bottom: 10px;
 }
   
+
+span{
+  color: blue;
+  font-weight: bold;
+  margin-right: 2rem;
+}
 
 
 .section_our_solution .row {

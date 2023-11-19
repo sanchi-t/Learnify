@@ -5,21 +5,21 @@ const EnrolledCourses = sequelize.define('EnrolledCourses', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
     },
     username: {
         type: DataTypes.STRING,
-        primaryKey: true,
         allowNull: false,
     },
-    course: {
+    masterCourseStatus: {
         type: DataTypes.STRING,
-        primaryKey: true,
         allowNull: false,
     },
-    courseDetails: {
-        type: DataTypes.ARRAY(DataTypes.TEXT),
+    courses: {
+        type: DataTypes.ARRAY(DataTypes.JSONB),
         allowNull: false,
-    }
+    },
 });
 
 module.exports = EnrolledCourses;

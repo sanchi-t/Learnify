@@ -62,7 +62,6 @@ def assessment():
         level = "All Levels"
     search_term = search_term.lower()
     num_of_rec = 5
-    
     search_term = clean_text(search_term, puncts=True, stopwords=True)
     result_df = search_term_if_not_found(search_term, df)
     result_df = result_df.sample(n=4)
@@ -79,8 +78,7 @@ def assessment():
             cour.append(dict(row))
         d1["courses"] = cour
         recommended_courses.append(d1)
-    
-    return jsonify({'result': recommended_courses}) 
+    return jsonify({"result": recommended_courses}) 
     # print('whats ',results.to_json())
 
 @app.route('/')
@@ -142,7 +140,7 @@ def get_users():
 #     return render_template('index.html')
 
 if __name__ == '__main__':
-    df = load_data("D:\learnify\model\out.csv")
+    df = load_data("out.csv")
     df = df.head(10000)
     df["duration_no"] = df['duration'].str.extract('(\d+)').astype(float)
     df['course_title'] = df['title'].str.lower()

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CourseService } from '../_service/course.service';
+import { CourseService,CurrentCourse } from '../_service/course.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NotesDialogComponent } from './notes-dialog.component'; // Create a new component for the notes dialog
 import { AuthService,UserJson } from '../_service/auth.service';
@@ -7,18 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
-interface CourseItem {
-  status: 'Pending' | 'Done' | 'Revisit';
-  link: string;
-  image: string;
-  lectures: number;
-  lecturesArray: { lectureNumber: number; status: string, notes: string }[];
-}
 
-interface CurrentCourse {
-  title: string;
-  items: CourseItem;
-}
 
 @Component({
   selector: 'app-home',
@@ -27,7 +16,12 @@ interface CurrentCourse {
 })
 
 export class HomeComponent {
-  courses: CurrentCourse[] = [];
+  courses: CurrentCourse = {
+    id: 0,
+    username: '',
+    masterCourseStatus: '',
+    courses: []
+  };
   userJson: UserJson = {
     id: 0,
     name: '',
@@ -58,20 +52,9 @@ export class HomeComponent {
 
   loadCourseData() {
     
-    this.courseService.getCurrentCourses().subscribe(
+    this.courseService.getCurrentCourses(this.userJson.username).subscribe(
       (data) => {
-        this.courses = data.map(course => ({
-          ...course,
-          items: {
-            ...course.items,
-            lecturesArray: Array.from({ length: course.items.lectures }, (_, index) => ({
-              lectureNumber: index + 1,
-              status: 'Pending',
-              notes: ''
-            }))
-            // Array.from({ length: course.items.lectures }, (_, index) => index + 1)
-          }
-        }));
+        this.courses = data;
         console.log(data);
       },
       (error) => {
@@ -98,13 +81,13 @@ export class HomeComponent {
 
     // After the dialog is closed, you can handle the result if needed
     dialogRef.afterClosed().subscribe(result => {
-      this.courses[courseIndex].items.lecturesArray[lectureIndex].notes = result;
+      // this.courses[courseIndex].items.lecturesArray[lectureIndex].notes = result;
       console.log('The dialog was closed',result);
     });
   }
 
   // app.component.ts
-  calculateProgress(lecturesArray: { lectureNumber: number; status: string; notes: string }[]): number {
+  calculateProgress(lecturesArray: { title: string; status: string; notes: string }[]): number {
     const doneCount = lecturesArray.filter(item => item.status === 'Done').length;
     const totalCount = lecturesArray.length;
 
@@ -116,7 +99,7 @@ export class HomeComponent {
       return 0;
     }
   
-    return lecturesArray.filter(item => item.status === 'Done').length;
+    return lecturesArray.filter(item => item.status === 'done').length;
   }
 
   cancelCourse(): void{
@@ -125,7 +108,7 @@ export class HomeComponent {
       (data) => {
         console.log(data);
         this.showSuccessMessage('Course Cancelled Successfully');
-        this.courses = [];
+        // this.courses = [];
       },
       (error) => {
         console.error('Error loading user profile', error);

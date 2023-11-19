@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AssessmentAnswers, CourseService } from '../_service/course.service';
 import { Router } from '@angular/router';
+import { AuthService,UserJson } from '../_service/auth.service';
+
+
 
 @Component({
   selector: 'app-assessment',
@@ -19,6 +22,18 @@ export class AssessmentComponent {
     courseType: 'free',
   };
 
+  userJson: UserJson = {
+    id: 0,
+    name: '',
+    username: '',
+    phoneno: null,
+    createdAt: '',
+    updatedAt: '',
+    address: null,
+    completedNo: 0,
+    masterCourseStatus: 'Not Enrolled',
+  }
+
   experienceLevels = ['beginner', 'intermediate', 'advanced'];
 
   private showErrorMessage(message: string): void {
@@ -28,7 +43,9 @@ export class AssessmentComponent {
     });
   }
 
-  constructor(private router: Router,private snackBar: MatSnackBar,private courseService: CourseService) {}
+  constructor(private router: Router,private snackBar: MatSnackBar,private courseService: CourseService,private authService: AuthService) {
+    this.userJson = authService.getUserJson();
+  }
 
 
   submitAssessment() {
@@ -38,10 +55,10 @@ export class AssessmentComponent {
       return;
     }
 
-    this.courseService.sendUserQuery(this.answers).subscribe(
+    this.courseService.sendUserQuery(this.answers,this.userJson.username).subscribe(
       (data) => {
         console.log(data);
-        // this.router.navigate(['/select-course']);
+        this.router.navigate(['/select-course']);
 
       },
       (error) => {

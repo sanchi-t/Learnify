@@ -23,7 +23,7 @@
   }
 
   body {
-    background-image: src('..\..\assets\bg.jpg'); 
+    background-image: src('https://learnifybucket.s3.amazonaws.com/assets/bg.jpg'); 
     background-size: cover; /* Cover the entire viewport */
     background-position: center; /* Center the background image */
     background-repeat: no-repeat; /* Prevent image repetition */

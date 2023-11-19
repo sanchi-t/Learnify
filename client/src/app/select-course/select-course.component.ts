@@ -1,119 +1,85 @@
 import { Component } from '@angular/core';
-import { SelectCourseList,CourseService } from '../_service/course.service';
+import {CourseSet, CourseData, CourseService } from '../_service/course.service';
+import { AuthService,UserJson } from '../_service/auth.service';
+
+
+
 @Component({
   selector: 'app-select-course',
   templateUrl: './select-course.component.html',
   styleUrls: ['./select-course.component.css']
 })
-export class SelectCourseComponent {
-  // courses: SelectCourseList = [];
-  constructor(private courseService: CourseService){ }
-courses= [ [
-  {
-    title: 'Ultimate AWS Certified Solutions Architect Associate SAA-C03',
-    items: 
-      { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:392 },
-      // Add more items as needed
-    
-  },
-  {
-      title: 'Ansible for the Absolute Beginner - Hands-On - DevOps',
-      items: 
-        { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:35 },
-        // Add more items as needed
-      
-  },
-  {
-      title: 'Azure DevOps Fundamentals for Beginners',
-      items: 
-        { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:44 },
-        // Add more items as needed
-      
-  },
-  {
-    title: 'Azure DevOps Fundamentals for Beginners',
-    items: 
-      { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:44 },
-      // Add more items as needed
-    
-},
-{
-  title: 'Azure DevOps Fundamentals for Beginners',
-  items: 
-    { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:44 },
-    // Add more items as needed
-  
-},
-], [
-  {
-    title: 'Ultimate AWS Certified Solutions Architect Associate SAA-C03',
-    items: 
-      { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:392 },
-      // Add more items as needed
-    
-  },
-  {
-      title: 'Ansible for the Absolute Beginner - Hands-On - DevOps',
-      items: 
-        { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:35 },
-        // Add more items as needed
-      
-  },
-  {
-      title: 'Azure DevOps Fundamentals for Beginners',
-      items: 
-        { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:44 },
-        // Add more items as needed
-      
-  },
-], [
-  {
-    title: 'Ultimate AWS Certified Solutions Architect Associate SAA-C03',
-    items: 
-      { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:392 },
-      // Add more items as needed
-    
-  },
-  {
-      title: 'Ansible for the Absolute Beginner - Hands-On - DevOps',
-      items: 
-        { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:35 },
-        // Add more items as needed
-      
-  },
-  {
-      title: 'Azure DevOps Fundamentals for Beginners',
-      items: 
-        { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:44 },
-        // Add more items as needed
-      
-  },
-], [
-  {
-    title: 'Ultimate AWS Certified Solutions Architect Associate SAA-C03',
-    items: 
-      { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:392 },
-      // Add more items as needed
-    
-  },
-  {
-      title: 'Ansible for the Absolute Beginner - Hands-On - DevOps',
-      items: 
-        { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:35 },
-        // Add more items as needed
-      
-  },
-  {
-      title: 'Azure DevOps Fundamentals for Beginners',
-      items: 
-        { status: 'Pending', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/', image:'https://img-c.udemycdn.com/course/240x135/2196488_8fc7_10.jpg', lectures:44 },
-        // Add more items as needed
-      
-  },
-]];
 
+
+export class SelectCourseComponent {
+  userJson: UserJson = {
+    id: 0,
+    name: '',
+    username: '',
+    phoneno: null,
+    createdAt: '',
+    updatedAt: '',
+    address: null,
+    completedNo: 0,
+    masterCourseStatus: 'Not Enrolled',
+  }
+
+  courseInfo: CourseData = {
+    createdAt: '',
+    id: 0,
+    recommendedCourses: [],
+    updatedAt: '',
+    username: '',
+  };
+  courseset: CourseSet = {
+    courses: [],
+    name: '',
+    total_duration: 0,
+    total_price: 0,
+  };
+
+  constructor(private courseService: CourseService, private authService: AuthService){
+    this.userJson = authService.getUserJson();
+   }
+
+ngOnInit() {
+  this.loadCourseData();
+}
+loadCourseData() {
+    
+  this.courseService.selectCourses(this.userJson.username).subscribe(
+    (data) => {
+      
+      
+      if (data.recommendedCourses && Array.isArray(data.recommendedCourses)) {
+        // Convert each recommendedCourses string to JSON objects
+        data.recommendedCourses = data.recommendedCourses.map((course: string) => {
+          return {
+            ...(JSON.parse(course)),
+          };
+        });
+      }
+
+      this.courseInfo = data;
+      this.courseset = data.recommendedCourses;
+      console.log(data);
+    },
+    (error) => {
+      console.error('Error loading user profile', error);
+    }
+  );
+}
   addCourse(index: number){
-    console.log(this.courses[index]);
+    console.log(this.courseInfo.recommendedCourses[index]);
+    const course = this.courseInfo.recommendedCourses[index];
+    this.courseService.addCurrentCourses(this.userJson.username,course).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (error) => {
+        console.error('Error loading user profile', error);
+      }
+    );
   }
 
 }

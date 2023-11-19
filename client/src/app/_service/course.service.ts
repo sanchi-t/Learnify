@@ -44,36 +44,43 @@ export class CourseService {
   }
 
 
-  getCurrentCourses(): Observable<CurrentCourse[]> {
-    const url = `${this.apiUrl}/current-course`;
-    return this.http.get<CurrentCourse[]>(url);
-  }
-
-  cancelCurrentCourses(username: string): Observable<CurrentCourse[]> {
+  getCurrentCourses(username: string): Observable<CurrentCourse> {
     const url = `${this.apiUrl}/current-course/${username}`;
-    return this.http.delete<CurrentCourse[]>(url);
+    return this.http.get<CurrentCourse>(url);
   }
 
-  sendUserQuery(assessmentAnswers: AssessmentAnswers): Observable<void> {
-    return this.http.post<any>(`${this.apiUrl}/current-course`, {assessmentAnswers});
+  cancelCurrentCourses(username: string): Observable<CurrentCourse> {
+    const url = `${this.apiUrl}/current-course/${username}`;
+    return this.http.delete<CurrentCourse>(url);
   }
 
-  selectCourses(username: string): Observable<{courses:SelectCourseList[]}> {
-    return this.http.get<{courses:SelectCourseList[]}>(`${this.apiUrl}/select-course/${username}`);
+  addCurrentCourses(username: string, course: CourseSet): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/current-course`,{username,course});
   }
-}
 
-export interface CourseItem {
-  status: 'Pending' | 'Done' | 'Revisit';
-  link: string;
-  image: string;
-  lectures: number;
-  lecturesArray?: { lectureNumber: number; status: string, notes: string }[];
+  sendUserQuery(assessmentAnswers: AssessmentAnswers, username: string): Observable<void> {
+    return this.http.post<any>(`${this.apiUrl}/select-course`, {assessmentAnswers,username});
+  }
+
+  selectCourses(username: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/select-course/${username}`);
+  }
+
 }
 
 export interface CurrentCourse {
-  title: string;
-  items: CourseItem;
+  id: number;
+  username: string;
+  masterCourseStatus: string;
+  courses: Array<{
+      course_title: string;
+      course_url: string;
+      lectures: Array<{
+          status: string;
+          title: string;
+          notes: string;
+      }>;
+  }>;
 }
 
 export interface Course {
@@ -101,15 +108,30 @@ export interface AssessmentAnswers {
   courseType: string;
 }
 
-interface SelectCourseItem {
-  title: string;
-  items: {
-    status: string;
-    link: string;
-    image: string;
-    lectures: number;
-    // Add more properties as needed
-  };
+
+
+interface Selectcourse {
+  author: string;
+  course_card_rating: string;
+  course_id: number;
+  course_title: string;
+  duration: string;
+  no_of_lectures: string;
 }
 
-export type SelectCourseList = SelectCourseItem[];
+export interface CourseSet {
+  courses: Selectcourse[];
+  name: string;
+  total_duration: number;
+  total_price: number;
+}
+
+export interface CourseData {
+  createdAt: string;
+  id: number;
+  recommendedCourses: CourseSet[];
+  updatedAt: string;
+  username: string;
+}
+
+

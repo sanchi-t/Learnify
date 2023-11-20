@@ -12,8 +12,7 @@ const CompletedCourses = sequelize.define('CompletedCourses', {
         allowNull: false,
     },
     courses: {
-        type: DataTypes.STRING,
-        primaryKey: true,
+        type: DataTypes.ARRAY(DataTypes.JSONB),
         allowNull: false,
     }
 });

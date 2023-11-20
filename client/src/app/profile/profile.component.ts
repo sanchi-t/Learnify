@@ -6,6 +6,20 @@ import { AuthService, UserJson } from '../_service/auth.service';
 
 
 
+interface CourseData {
+  id: number;
+  username: string;
+  masterCourseStatus: string;
+  courses: Array<{
+      course_title: string;
+      course_url: string;
+      lectures: Array<{
+          status: string;
+          title: string;
+          notes: string;
+      }>;
+  }>;
+}
 
 interface Course {
   name: string;
@@ -44,7 +58,7 @@ export class ProfileComponent implements OnInit {
     masterCourseStatus: 'Not Enrolled',
   }
 
-  courses: Course[][] =[];
+  courses: CourseData[] =[];
   
   editedUserProfile: UserJson;
   editMode: boolean;
@@ -79,9 +93,11 @@ export class ProfileComponent implements OnInit {
 
   // Uncomment this function if you have a getCourseData function in ProfileService
   loadCourseData() {
-    this.profileService.getCourseData().subscribe(
+    this.profileService.getCourseData(this.userJson.username).subscribe(
       (data) => {
-        this.courses = data;
+        this.courses = data.courses;
+        console.log(this.courses);
+
         
       },
       (error) => {

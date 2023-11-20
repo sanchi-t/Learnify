@@ -20,7 +20,6 @@ export class CourseService {
       map((response: { courses: Course[] }) => {
         
         if (response.courses.length === 0) {
-          console.log('hi');
           this.router.navigate(['/error']);
         }
         return response.courses;
@@ -35,7 +34,6 @@ export class CourseService {
       map((response: { courses: Course[] }) => {
         
         if (response.courses.length === 0) {
-          console.log('hi');
           this.router.navigate(['/error']);
         }
         return response.courses;
@@ -56,6 +54,14 @@ export class CourseService {
 
   addCurrentCourses(username: string, course: CourseSet): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/current-course`,{username,course});
+  }
+
+  editCurrentCourses(username: string, updatedLecture: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/current-course`,{username,updatedLecture});
+  }
+
+  completedCurrentCourses(username: string, course: CurrentCourse): Observable<any> {
+    return this.http.patch<any>(`${this.apiUrl}/current-course`,{username,course});
   }
 
   sendUserQuery(assessmentAnswers: AssessmentAnswers, username: string): Observable<void> {

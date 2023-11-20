@@ -27,8 +27,8 @@ export class ProfileService {
   }
   
 
-  getCourseData(): Observable<Course[][]> {
-      return this.http.get<Course[][]>(`${this.apiUrl}/course-data`);
+  getCourseData(username: string): Observable<any> {
+      return this.http.post<any>(`${this.apiUrl}/course-data`,{username:username});
   }
 
   saveUserProfile(user: UserJson): Observable<[val:number]>{

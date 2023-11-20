@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {CourseSet, CourseData, CourseService } from '../_service/course.service';
 import { AuthService,UserJson } from '../_service/auth.service';
+import { Router } from '@angular/router';
 
 
 
@@ -38,7 +39,7 @@ export class SelectCourseComponent {
     total_price: 0,
   };
 
-  constructor(private courseService: CourseService, private authService: AuthService){
+  constructor(private router: Router,private courseService: CourseService, private authService: AuthService){
     this.userJson = authService.getUserJson();
    }
 
@@ -53,9 +54,10 @@ loadCourseData() {
       
       if (data.recommendedCourses && Array.isArray(data.recommendedCourses)) {
         // Convert each recommendedCourses string to JSON objects
-        data.recommendedCourses = data.recommendedCourses.map((course: string) => {
+        data.recommendedCourses = data.recommendedCourses.map((course: any) => {
           return {
-            ...(JSON.parse(course)),
+            ...course,
+            // ...(JSON.parse(course)),
           };
         });
       }
@@ -75,6 +77,7 @@ loadCourseData() {
     this.courseService.addCurrentCourses(this.userJson.username,course).subscribe(
       (data) => {
         console.log(data);
+        this.router.navigate(['/home']);
       },
       (error) => {
         console.error('Error loading user profile', error);

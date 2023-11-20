@@ -44,5 +44,5 @@ app.listen(process.env.PORT, () => {
 
 //To insert data from csv file----->
 // const services = require('./controllers/serviceController');
-// const csvFilePath = '../model/Design_Udemy.csv';
+// const csvFilePath = '../model/out.csv';
 // services.insertDataFromCSV(csvFilePath)

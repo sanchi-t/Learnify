@@ -17,7 +17,7 @@ export class AssessmentComponent {
   answers: AssessmentAnswers = {
     question1: '',
     budget: null,
-    hours: 0,
+    hours: 1,
     experience: '',
     courseType: 'free',
   };

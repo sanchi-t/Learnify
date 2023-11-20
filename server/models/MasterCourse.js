@@ -12,7 +12,7 @@ const MasterCourse = sequelize.define('MasterCourse', {
         allowNull: false,
     },
     recommendedCourses: {
-        type: DataTypes.ARRAY(DataTypes.TEXT),
+        type: DataTypes.ARRAY(DataTypes.JSONB),
         allowNull: false,
     }
 });

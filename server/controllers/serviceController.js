@@ -32,6 +32,14 @@ const DesignUdemy = sequelize.define('design_udemy', {
 });
 
 
+function truncateString(inputString, maxLength) {
+    if (inputString.length <= maxLength) {
+        return inputString;
+    } else {
+        return inputString.slice(0, maxLength);
+    }
+}
+
 
 
 exports.insertDataFromCSV = async (filePath) => {
@@ -41,10 +49,10 @@ exports.insertDataFromCSV = async (filePath) => {
             .on('data', async (row) => {
                 // Insert a new record using Sequelize's model
                 await DesignUdemy.create({
-                    title: row.title,
+                    title: truncateString(row.title,255),
                     title_url: row.title_url,
                     image: row.image,
-                    summary: row.summary,
+                    summary: truncateString(row.summary, 255),
                     rating: row.rating,
                     review: row.review,
                     duration: row.duration,

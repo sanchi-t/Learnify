@@ -38,11 +38,11 @@ app.use(courseRoutes);
 app.use(userRoutes);
 
 app.listen(process.env.PORT, () => {
-  console.log(`Server is listening on port 3000 ${process.env.DB_TABLE}`);
+  console.log(`Server is listening on port 3000 ${process.env.POSTGRESQL_DB}`);
 });
 
 
 //To insert data from csv file----->
 // const services = require('./controllers/serviceController');
-// const csvFilePath = '../model/out.csv';
+// const csvFilePath = '../model/Design_Udemy.csv';
 // services.insertDataFromCSV(csvFilePath)

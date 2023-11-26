@@ -1,0 +1,36 @@
+# angular-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular
+  template:
+    metadata:
+      labels:
+        app: angular
+    spec:
+      containers:
+      - name: angular-container
+        image: 0sanchits/learnify-client
+        ports:
+        - containerPort: 80
+
+---
+# angular-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-service
+spec:
+  type: NodePort
+  selector:
+    app: angular
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30007

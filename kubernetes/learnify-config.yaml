@@ -1,0 +1,8 @@
+# configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: learnify-config
+data:
+  apiUrl: nodejs-service
+  MODEL_API: python-model-service

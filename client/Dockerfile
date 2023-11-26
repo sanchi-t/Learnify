@@ -1,32 +1,20 @@
-# Use an official Node runtime as a base image
-FROM node:latest as build
-
+# Stage 1: Compile and Build angular codebase
+# Use official node image as the base image
+FROM node:16-alpine as build
 # Set the working directory
-WORKDIR /app
-
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
-
-# Install project dependencies
-RUN npm install
-
-# Copy the entire project to the working directory
-COPY . .
-
-# Install the latest Angular CLI globally
-RUN npm install -g @angular/cli
-
-# Build the Angular app
-RUN ng build --prod
-
-# Use a lightweight runtime image
-FROM nginx:latest
-
-# Copy the built artifacts from the build image to the NGINX public directory
-COPY --from=build /app/dist/learnify /usr/share/nginx/html
-
-# Expose the port that NGINX will run on
+WORKDIR /usr/local/app
+# Add the source code to app
+COPY ./ /usr/local/app/
+# Install all the dependencies
+RUN npm install -f
+# Generate the build of the application
+RUN npm run build
+# Stage 2: Serve app with nginx server
+# Use official nginx image as the base image
+FROM nginx:alpine
+RUN rm -rf /usr/share/nginx/html/* && rm -rf /etc/nginx/nginx.conf
+COPY ./nginx.conf /etc/nginx/nginx.conf
+# Copy the build output to replace the default nginx contents.
+COPY --from=build /usr/local/app/dist/client /usr/share/nginx/html
+# Expose port 80
 EXPOSE 80
-
-# Command to start NGINX when the container starts
-CMD ["nginx", "-g", "daemon off;"]

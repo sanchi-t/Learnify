@@ -10,7 +10,6 @@ Learnify is a comprehensive course recommendation platform designed to help user
     - [Python Dependencies](#python-dependencies)
   - [Docker Usage](#docker-usage)
   - [Kubernetes Deployment](#kubernetes-deployment)
-- [Configuration](#configuration)
 - [UI Preview](#ui-preview)
 
 ## Introduction
@@ -153,5 +152,17 @@ Follow the instructions [here](https://minikube.sigs.k8s.io/docs/start/) to inst
 
 
 ### UI Preview
+
+![WhatsApp Image 2023-11-21 at 10 17 50_f2b08ce2](https://github.com/sanchi-t/Learnify/assets/98596642/5e7533c3-d2a4-4ad1-a087-d01ec4cb8100)
+![WhatsApp Image 2023-11-21 at 10 18 35_f6113c82](https://github.com/sanchi-t/Learnify/assets/98596642/a65f5373-d150-4815-8734-788b23d48c4d)
+![WhatsApp Image 2023-11-21 at 10 17 50_107689e9](https://github.com/sanchi-t/Learnify/assets/98596642/a58bbaac-37d4-4273-a1a0-dd9c77afa9eb)
+![WhatsApp Image 2023-11-21 at 10 18 34_40c5cfa8](https://github.com/sanchi-t/Learnify/assets/98596642/9271f84a-c4bf-4eb2-97d9-2edd3c5ccf32)
+![WhatsApp Image 2023-11-21 at 10 18 34_cbf59b3d](https://github.com/sanchi-t/Learnify/assets/98596642/ffba076b-bbad-4a2f-a8e4-b15a10e613eb)
+![WhatsApp Image 2023-11-21 at 10 18 34_3139bcf3](https://github.com/sanchi-t/Learnify/assets/98596642/68dd067d-94b0-433b-8018-f66386fa537e)
+![WhatsApp Image 2023-11-21 at 10 18 35_7b7a3764](https://github.com/sanchi-t/Learnify/assets/98596642/b5571cb3-2c24-4a19-9a82-3d199619735b)
+![WhatsApp Image 2023-11-21 at 10 18 36_2bc6b7c0](https://github.com/sanchi-t/Learnify/assets/98596642/0876eb6b-707f-4583-abd8-1452b510b9d2)
+![WhatsApp Image 2023-11-21 at 10 17 19_db5b2725](https://github.com/sanchi-t/Learnify/assets/98596642/44f49a4c-5113-46ef-b5f5-a6f3150fe58b)
+![WhatsApp Image 2023-11-21 at 10 17 19_8fcb85e5](https://github.com/sanchi-t/Learnify/assets/98596642/21f037b1-077e-4627-a284-3db096fdc482)
+
 
 

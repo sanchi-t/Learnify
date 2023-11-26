@@ -7,7 +7,6 @@ Learnify is a comprehensive course recommendation platform designed to help user
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Local Setup](#local-setup)
-    - [Python Dependencies](#python-dependencies)
   - [Docker Usage](#docker-usage)
   - [Kubernetes Deployment](#kubernetes-deployment)
 - [Website Demonstration](#website-demonstration)

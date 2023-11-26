@@ -10,6 +10,7 @@ Learnify is a comprehensive course recommendation platform designed to help user
     - [Python Dependencies](#python-dependencies)
   - [Docker Usage](#docker-usage)
   - [Kubernetes Deployment](#kubernetes-deployment)
+- [Website Demonstration](#website-demonstration)
 - [UI Preview](#ui-preview)
 
 ## Introduction
@@ -149,7 +150,9 @@ Follow the instructions [here](https://minikube.sigs.k8s.io/docs/start/) to inst
    ```bash
    minikube service learnify-frontend
 
+### Website Demonstration
 
+https://github.com/sanchi-t/Learnify/assets/98596642/0c700c41-cda7-4b5e-98f1-d9936da5ddfc
 
 ### UI Preview
 
@@ -163,6 +166,11 @@ Follow the instructions [here](https://minikube.sigs.k8s.io/docs/start/) to inst
 ![WhatsApp Image 2023-11-21 at 10 18 36_2bc6b7c0](https://github.com/sanchi-t/Learnify/assets/98596642/0876eb6b-707f-4583-abd8-1452b510b9d2)
 ![WhatsApp Image 2023-11-21 at 10 17 19_db5b2725](https://github.com/sanchi-t/Learnify/assets/98596642/44f49a4c-5113-46ef-b5f5-a6f3150fe58b)
 ![WhatsApp Image 2023-11-21 at 10 17 19_8fcb85e5](https://github.com/sanchi-t/Learnify/assets/98596642/21f037b1-077e-4627-a284-3db096fdc482)
+
+
+
+
+
 
 
 

@@ -108,41 +108,13 @@ def get_users():
         
     return jsonify({'result': recommended_courses})
 
-# @app.route('/', methods=['GET', 'POST'])
-# def index():
-#     if request.method == 'POST':
-#         search_term = request.form['search_term'].lower()
-#         num_of_rec = 5
-        
-#         search_term = clean_text(search_term, puncts=True, stopwords=True)
-#         result_df = search_term_if_not_found(search_term, df)
-#         result_df = result_df.sample(n=4)
-#         course_names = list(result_df['course_title'])
-#         recommended_courses = []
-        # for i, c in enumerate(course_names):
-        #     d1 = dict()
-        #     d1["name"] = "masterset" + str(i+1)
-        #     results = get_recommendation(c,cosine_sim_mat,df,num_of_rec)
-        #     d1["total_price"] = sum(results["price"])
-        #     results["duration_no"] = results['duration'].str.extract('(\d+)').astype(float)
-        #     d1["total_duration"] = sum(results["duration_no"])
-        #     cour = []
-        #     for index, row in results.iterrows():
-        #         cour.append(dict(row))
-        #     d1["courses"] = cour
-        #     recommended_courses.append(d1)
 
-#         for i in recommended_courses:
-#             print(i)
-#             print()
-#         # return render_template('index.html', search_term=search_term, recommendations_list=recommendations_list)
+df = load_data("out.csv")
+df = df.head(10000)
+df["duration_no"] = df['duration'].str.extract('(\d+)').astype(float)
+df['course_title'] = df['title'].str.lower()
+cosine_sim_mat = vectorize_text_to_cosine_mat(df['course_title'])
 
-#     return render_template('index.html')
 
 if __name__ == '__main__':
-    df = load_data("out.csv")
-    df = df.head(10000)
-    df["duration_no"] = df['duration'].str.extract('(\d+)').astype(float)
-    df['course_title'] = df['title'].str.lower()
-    cosine_sim_mat = vectorize_text_to_cosine_mat(df['course_title'])
-    app.run(debug=True)
+    app.run(host= '0.0.0.0',port=5000)

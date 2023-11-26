@@ -99,15 +99,17 @@ exports.addSelectCourse = async (req, res) => {
         // Retrieve the top 12 records from the table
         const flaskApiUrl = process.env.MODEL_API;
          // Replace with your Flask API URL
+         console.log(flaskApiUrl)
         let courses = [];
         await axios.post(`${flaskApiUrl}/assessment`, { search_term: 'assessment', data: assessmentAnswers }).then(
           (response) => {
             courses = response.data;
-            courses = courses.replace(/"course_id": NaN/g, '"course_id": 0');
+            courses = courses.replace(/NaN/g, '0');
+            console.log(courses,'fghjk')
             courses = JSON.parse(courses,true).result;
           } 
         );
-        console.log(courses,'fghjk')
+        
         const [masterCourse, created] = await MasterCourse.findOrCreate({
           where: { username: username },
           defaults: {
@@ -128,8 +130,8 @@ exports.addSelectCourse = async (req, res) => {
         res.status(200).json({ message: 'success' });
 
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'An error occurred' });
+        console.log(error);
+        res.status(500).json({ message: error });
     }
 };
 

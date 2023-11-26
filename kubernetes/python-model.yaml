@@ -1,0 +1,33 @@
+# python-model-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-model-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-model
+  template:
+    metadata:
+      labels:
+        app: python-model
+    spec:
+      containers:
+      - name: python-model-container
+        image: 0sanchits/learnify-model
+        ports:
+        - containerPort: 5000
+---
+# python-model-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-model-service
+spec:
+  selector:
+    app: python-model
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000

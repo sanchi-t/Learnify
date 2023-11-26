@@ -1,0 +1,41 @@
+# nodejs-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+      - name: nodejs-container
+        image: 0sanchits/learnify-server
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MODEL_API
+          valueFrom:
+            configMapKeyRef:
+              name: learnify-config
+              key: MODEL_API
+---
+# nodejs-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-service
+spec:
+  type: NodePort
+  selector:
+    app: nodejs
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30100

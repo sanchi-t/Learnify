@@ -60,6 +60,8 @@ Before starting, ensure you have the following installed:
 4. **Create a .env file in the server folder with the following content:**
 
     ```bash
+    NODE_ENV=development
+    PORT=<port>
     MODEL_API=<model api>
     POSTGRESQL_DB_HOST = <host>
     POSTGRESQL_DB_USER = <username>
